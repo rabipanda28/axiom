@@ -2,5 +2,7 @@
   "name": "Axiom RDM — Enterprise Governance & Dual-Control Platform",
   "description": "Institutional Reference Data Management (RDM) catalog, staging editor, and statutory dual-control Maker-Checker governance platform.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

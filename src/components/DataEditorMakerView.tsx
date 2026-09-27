@@ -37,7 +37,6 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
   const activeDataset =
     datasets.find((d) => d.id === selectedDatasetId) || datasets[1] || datasets[0];
 
-  // Track cell edits: key = `${rowIdx}:${colKey}`, value = new string
   const [stagedEdits, setStagedEdits] = useState<
     Record<string, { rowKey: string; colKey: string; oldVal: string; newVal: string }>
   >({});
@@ -177,17 +176,17 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
-          <div className="text-[10px] font-mono uppercase tracking-[0.06em] text-[#64748b]">
-            MAKER STAGING WORKBENCH /{' '}
-            <span className="font-bold text-[#4b41e1]">
+          <div className="text-[10px] font-mono uppercase tracking-[0.06em] text-[#5c6f7e]">
+            BARCLAYS MAKER STAGING WORKBENCH /{' '}
+            <span className="font-bold text-[#0076b6]">
               DETERMINISTIC CELL MUTATION EDITOR
             </span>
           </div>
           <div className="flex items-center gap-3 mt-1">
-            <h1 className="text-[22px] font-bold text-[#0d1c2f] tracking-tight">
+            <h1 className="text-[22px] font-bold text-[#00263e] tracking-tight">
               Data Editor &amp; Maker Staging
             </h1>
-            <span className="bg-[#e2dfff] text-[#3323cc] font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+            <span className="bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs uppercase">
               MAKER MODE: {currentRole.principalName}
             </span>
           </div>
@@ -201,7 +200,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
               setStagedEdits({});
             }}
             aria-label="Select dataset partition"
-            className="bg-white border border-[#cbd5e1] rounded px-3 py-1.5 text-xs font-bold text-[#01284b]"
+            className="bg-white border border-[#cbd9e3] rounded-xs px-3 py-1.5 text-xs font-bold text-[#00395d]"
           >
             {datasets.map((d) => (
               <option key={d.id} value={d.id}>
@@ -213,9 +212,9 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
           <button
             type="button"
             onClick={handleStageQuickDemoMutation}
-            className="bg-[#4b41e1] hover:bg-[#3323cc] text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="bg-[#00395d] hover:bg-[#00263e] border-b-2 border-b-[#00AEEF] text-white text-xs font-semibold px-3 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors whitespace-nowrap"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 text-[#00AEEF]" />
             <span>Stage Sample Mutation</span>
           </button>
         </div>
@@ -224,14 +223,14 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
       {/* Main Split Grid: Editable Reference Partition Table + Staging Commit Drawer */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
         {/* Left 2 Columns: Editable Reference Data Grid */}
-        <div className="lg:col-span-2 bg-white border border-[#e2e8f0] rounded overflow-hidden">
-          <div className="bg-[#f4f7fe] border-b border-[#e2e8f0] px-4 py-3 flex items-center justify-between">
+        <div className="lg:col-span-2 bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs overflow-hidden">
+          <div className="bg-[#f2f8fc] border-b border-[#cbd9e3] px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Database className="w-4 h-4 text-[#01284b]" />
-              <span className="text-xs font-bold text-[#0d1c2f]">
+              <Database className="w-4 h-4 text-[#0076b6]" />
+              <span className="text-xs font-bold text-[#00263e]">
                 Active Partition: {activeDataset.code}
               </span>
-              <span className="font-mono text-[10.5px] text-[#64748b]">
+              <span className="font-mono text-[10.5px] text-[#5c6f7e]">
                 ({activeDataset.version} • Click any cell value to stage a Maker mutation)
               </span>
             </div>
@@ -239,7 +238,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
               <button
                 type="button"
                 onClick={() => setStagedEdits({})}
-                className="text-[11px] font-semibold text-[#ba1a1a] hover:underline flex items-center gap-1"
+                className="text-[11px] font-semibold text-[#C8102E] hover:underline flex items-center gap-1"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Discard {editList.length} Draft Edits</span>
@@ -250,7 +249,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#eff4ff]/80 border-b border-[#e2e8f0] text-[10px] font-bold uppercase tracking-wider text-[#0d1c2f]">
+                <tr className="bg-[#edf5fa] border-b border-[#cbd9e3] text-[10px] font-bold uppercase tracking-wider text-[#00395d]">
                   {columns.map((col) => (
                     <th key={col} className="py-2.5 px-3.5 font-mono">
                       {col}
@@ -259,7 +258,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                   <th className="py-2.5 px-3 text-right">CELL STATE</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#e2e8f0]">
+              <tbody className="divide-y divide-[#d4dfe6]">
                 {activeDataset.sampleRecords.map((row, rIdx) => {
                   const rowKey = String(row.KEY || `ROW_${rIdx + 1}`);
                   const rowHasEdit = columns.some(
@@ -269,7 +268,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                     <tr
                       key={rowKey}
                       className={
-                        rowHasEdit ? 'bg-[#eff4ff]/40' : 'hover:bg-[#f8fafc]'
+                        rowHasEdit ? 'bg-[#e5f4fb]/50' : 'hover:bg-[#f4f9fc]'
                       }
                     >
                       {columns.map((colKey) => {
@@ -302,7 +301,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                                       setEditingCell(null);
                                     }
                                   }}
-                                  className="border border-[#4b41e1] rounded px-2 py-0.5 text-xs font-mono bg-white text-[#0d1c2f] w-32 focus:outline-none"
+                                  className="border border-[#00AEEF] rounded-xs px-2 py-0.5 text-xs font-mono bg-white text-[#00263e] w-32 focus:outline-none"
                                 />
                                 <button
                                   type="button"
@@ -314,7 +313,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                                       origVal
                                     )
                                   }
-                                  className="bg-[#01284b] text-white text-[10px] px-2 py-0.5 rounded"
+                                  className="bg-[#00395d] text-white text-[10px] px-2 py-0.5 rounded-xs"
                                 >
                                   Stage
                                 </button>
@@ -326,10 +325,10 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                                 }
                                 className="cursor-pointer space-y-0.5"
                               >
-                                <div className="text-[10px] text-[#ba1a1a] line-through">
+                                <div className="text-[10px] text-[#C8102E] line-through">
                                   - {staged.oldVal}
                                 </div>
-                                <div className="text-xs font-bold text-[#005137] bg-[#e6faee] px-1.5 py-0.5 rounded inline-block">
+                                <div className="text-xs font-bold text-[#006837] bg-[#e6f5ee] px-1.5 py-0.5 rounded-xs inline-block">
                                   + {staged.newVal}
                                 </div>
                               </div>
@@ -339,18 +338,18 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                                 onClick={() =>
                                   handleStartEdit(rIdx, colKey, origVal)
                                 }
-                                className="group flex items-center gap-1.5 text-left hover:text-[#4b41e1] transition-colors"
+                                className="group flex items-center gap-1.5 text-left hover:text-[#0076b6] transition-colors"
                               >
                                 <span
                                   className={
                                     colKey === 'KEY'
-                                      ? 'font-bold text-[#0d1c2f]'
-                                      : 'text-[#43474e]'
+                                      ? 'font-bold text-[#00263e]'
+                                      : 'text-[#33414c]'
                                   }
                                 >
                                   {origVal}
                                 </span>
-                                <Edit3 className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#4b41e1]" />
+                                <Edit3 className="w-3 h-3 opacity-0 group-hover:opacity-100 text-[#00AEEF]" />
                               </button>
                             )}
                           </td>
@@ -358,11 +357,11 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                       })}
                       <td className="py-2.5 px-3 text-right">
                         {rowHasEdit ? (
-                          <span className="bg-[#e2dfff] text-[#3323cc] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+                          <span className="bg-[#00395d] text-[#00AEEF] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
                             STAGED DELTA
                           </span>
                         ) : (
-                          <span className="font-mono text-[10px] text-[#059669] inline-flex items-center gap-1">
+                          <span className="font-mono text-[10px] text-[#008a4b] inline-flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" />
                             <span>LIVE SYNC</span>
                           </span>
@@ -376,12 +375,12 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
           </div>
 
           {/* DDL Preview Footer */}
-          <div className="bg-[#0d1c2f] text-[#e6eeff] p-3.5 border-t border-[#e2e8f0]">
-            <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#85f8c4] mb-1.5">
+          <div className="bg-[#001b2e] text-[#e5f4fb] p-3.5 border-t border-[#cbd9e3]">
+            <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#00AEEF] mb-1.5">
               <Braces className="w-3.5 h-3.5" />
               <span>Bound Partition Schema DDL ({activeDataset.code})</span>
             </div>
-            <pre className="font-mono text-[11px] overflow-x-auto leading-relaxed text-[#aac9f4]">
+            <pre className="font-mono text-[11px] overflow-x-auto leading-relaxed text-[#b3d4e8]">
               {activeDataset.ddlSchema}
             </pre>
           </div>
@@ -390,23 +389,23 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
         {/* Right Column: Maker Staging Commit Panel */}
         <form
           onSubmit={handleSubmitToQueue}
-          className="bg-white border border-[#e2e8f0] rounded p-4 space-y-3.5"
+          className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00395d] rounded-xs p-4 space-y-3.5"
         >
-          <div className="flex items-center justify-between border-b border-[#e2e8f0] pb-2.5">
+          <div className="flex items-center justify-between border-b border-[#d4dfe6] pb-2.5">
             <div className="flex items-center gap-2">
-              <GitCommit className="w-4 h-4 text-[#4b41e1]" />
-              <h2 className="text-xs font-bold text-[#0d1c2f]">
+              <GitCommit className="w-4 h-4 text-[#0076b6]" />
+              <h2 className="text-xs font-bold text-[#00263e]">
                 Stage Batch for Checker Sign-Off
               </h2>
             </div>
-            <span className="bg-[#eff4ff] text-[#01284b] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+            <span className="bg-[#e5f4fb] text-[#00395d] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
               {editList.length} Mutations
             </span>
           </div>
 
           <div className="grid grid-cols-2 gap-2.5">
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#64748b] mb-1">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] mb-1">
                 Jira / Incident ID *
               </label>
               <input
@@ -414,12 +413,12 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                 required
                 value={ticketId}
                 onChange={(e) => setTicketId(e.target.value)}
-                className="w-full border border-[#cbd5e1] rounded px-2.5 py-1.5 font-mono text-xs"
+                className="w-full border border-[#cbd9e3] rounded-xs px-2.5 py-1.5 font-mono text-xs"
               />
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#64748b] mb-1">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] mb-1">
                 Urgency SLA Tier
               </label>
               <select
@@ -429,7 +428,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                     e.target.value as 'HIGH PRIORITY' | 'NORMAL' | 'CRITICAL'
                   )
                 }
-                className="w-full border border-[#cbd5e1] rounded px-2 py-1.5 text-xs font-semibold"
+                className="w-full border border-[#cbd9e3] rounded-xs px-2 py-1.5 text-xs font-semibold"
               >
                 <option value="HIGH PRIORITY">HIGH PRIORITY</option>
                 <option value="NORMAL">NORMAL</option>
@@ -439,7 +438,7 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[#64748b] mb-1">
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] mb-1">
               Business Justification &amp; Statutory Intent *
             </label>
             <textarea
@@ -447,17 +446,17 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
               required
               value={justification}
               onChange={(e) => setJustification(e.target.value)}
-              className="w-full border border-[#cbd5e1] rounded p-2.5 text-xs text-[#0d1c2f]"
+              className="w-full border border-[#cbd9e3] rounded-xs p-2.5 text-xs text-[#00263e]"
             />
           </div>
 
           {/* Staged Diffs Summary */}
-          <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748b] mb-1.5">
+          <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] mb-1.5">
               Uncommitted Maker Diff Buffer
             </div>
             {editList.length === 0 ? (
-              <div className="text-[11px] text-[#64748b] italic">
+              <div className="text-[11px] text-[#5c6f7e] italic">
                 Click any value in the table or press &ldquo;Stage Sample
                 Mutation&rdquo; to populate the diff buffer.
               </div>
@@ -466,15 +465,15 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
                 {editList.map((ed, i) => (
                   <div
                     key={i}
-                    className="bg-white border border-[#d5e3fd] rounded p-2"
+                    className="bg-white border border-[#cbd9e3] rounded-xs p-2"
                   >
-                    <div className="font-bold text-[#0d1c2f]">
+                    <div className="font-bold text-[#00263e]">
                       {ed.rowKey} • {ed.colKey}
                     </div>
-                    <div className="text-[#ba1a1a] line-through">
+                    <div className="text-[#C8102E] line-through">
                       - {ed.oldVal}
                     </div>
-                    <div className="text-[#005137] font-bold">
+                    <div className="text-[#006837] font-bold">
                       + {ed.newVal}
                     </div>
                   </div>
@@ -485,10 +484,10 @@ export const DataEditorMakerView: React.FC<DataEditorMakerViewProps> = ({
 
           <button
             type="submit"
-            className="w-full bg-[#01284b] hover:bg-[#1e3e62] text-white text-xs font-bold py-2.5 px-4 rounded flex items-center justify-center gap-2 transition-colors"
+            className="w-full bg-[#00395d] hover:bg-[#00263e] border-b-2 border-b-[#00AEEF] text-white text-xs font-bold py-2.5 px-4 rounded-xs flex items-center justify-center gap-2 transition-colors"
           >
             <span>Commit Batch to Dual-Sign Queue</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#00AEEF]" />
           </button>
         </form>
       </div>

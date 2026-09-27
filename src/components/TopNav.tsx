@@ -105,49 +105,52 @@ export const TopNav: React.FC<TopNavProps> = ({
     : [];
 
   return (
-    <header className="w-full flex items-stretch border-b border-[#d5e3fd] bg-white select-none z-40 relative">
-      {/* Main Dark Navy Top Bar */}
-      <div className="flex-1 bg-[#01284b] text-white flex items-center justify-between px-3 py-1.5 gap-3 min-w-0">
-        {/* Left Brand & Cluster */}
+    <header className="w-full flex items-stretch border-t-2 border-t-[#00AEEF] border-b border-b-[#cbd9e3] bg-white select-none z-40 relative shadow-2xs">
+      {/* Main Barclays Deep Navy (#00263E) Top Bar */}
+      <div className="flex-1 bg-[#00263e] text-white flex items-center justify-between px-3.5 py-1.5 gap-3 min-w-0">
+        {/* Left Barclays Brand & Cluster */}
         <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={() => onSelectTab('catalog')}
             className="flex items-center gap-2.5 text-left group focus:outline-none"
           >
-            {/* Brand mark matching screenshot */}
-            <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded bg-[#0c355f] border border-[#235284] flex items-center justify-center">
+            {/* Barclays Cyan Eagle / Wing Crest Icon */}
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-xs bg-[#00395d] border border-[#00AEEF]/50 flex items-center justify-center shadow-inner">
                 <svg
-                  className="w-3.5 h-3.5 text-[#5294e2]"
+                  className="w-4 h-4 text-[#00AEEF]"
                   viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
+                  fill="currentColor"
                 >
-                  <polygon points="12 2 22 12 12 22 2 12 12 2" />
-                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 3L9.5 7.5L3 5.5L5.5 11.5L2 14L8.5 14.5L10.5 21L12 17.5L13.5 21L15.5 14.5L22 14L18.5 11.5L21 5.5L14.5 7.5L12 3Z" />
                 </svg>
               </div>
-              <div className="hidden 2xl:flex flex-col leading-none text-[8px] font-mono text-[#3d648f] tracking-tighter pr-1 border-r border-[#1a4068]">
-                <span>AXIOM</span>
-                <span>RDM &amp; GOVERNA</span>
+              <div className="hidden 2xl:flex flex-col leading-none text-[8.5px] font-mono text-[#00AEEF] font-bold tracking-widest pr-2 border-r border-[#004d7a]">
+                <span>BARCLAYS</span>
+                <span className="text-[#8ab8d6] font-normal">BARX // RDM</span>
               </div>
             </div>
 
             <div className="flex flex-col leading-tight">
-              <span className="text-[15px] font-bold tracking-tight text-white group-hover:text-[#aac9f4] transition-colors">
-                Axiom RDM
-              </span>
-              <span className="text-[8.5px] font-mono uppercase tracking-[0.14em] text-[#8ba9d3]">
-                ENTERPRISE GOVERNANCE
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] font-extrabold tracking-[0.14em] text-[#00AEEF] uppercase">
+                  BARCLAYS
+                </span>
+                <span className="text-[#006094] text-xs">|</span>
+                <span className="text-[14.5px] font-bold tracking-tight text-white group-hover:text-[#00AEEF] transition-colors">
+                  Axiom RDM
+                </span>
+              </div>
+              <span className="text-[8.5px] font-mono uppercase tracking-[0.14em] text-[#8ab8d6]">
+                CIB ENTERPRISE GOVERNANCE
               </span>
             </div>
           </button>
 
-          {/* PROD - CLUSTER US-EAST Badge */}
-          <div className="hidden lg:flex items-center gap-1.5 bg-[#0d3359] border border-[#1d4b78] rounded px-2.5 py-1">
-            <span className="w-2 h-2 rounded-full bg-[#34d399] shrink-0" />
+          {/* PROD - CLUSTER Badge */}
+          <div className="hidden lg:flex items-center gap-1.5 bg-[#00395d] border border-[#005a8c] rounded-xs px-2.5 py-1">
+            <span className="w-2 h-2 rounded-full bg-[#00AEEF] shrink-0" />
             <span className="font-mono text-[10px] font-semibold tracking-wider text-white whitespace-nowrap">
               PROD - CLUSTER US-EAST
             </span>
@@ -155,14 +158,14 @@ export const TopNav: React.FC<TopNavProps> = ({
         </div>
 
         {/* Center Navigation Links */}
-        <nav className="flex items-center gap-1 xl:gap-2 overflow-x-auto no-scrollbar">
+        <nav className="flex items-center gap-1 xl:gap-1.5 overflow-x-auto no-scrollbar">
           <button
             type="button"
             onClick={() => onSelectTab('catalog')}
-            className={`px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-1.5 leading-tight ${
+            className={`px-3 py-1.5 rounded-xs text-xs transition-colors flex items-center gap-1.5 leading-tight ${
               activeTab === 'catalog'
-                ? 'bg-[#1e3e62] text-white font-bold border-b-2 border-[#8ba9d3]'
-                : 'text-[#aac9f4] hover:text-white hover:bg-[#0d3359]/60 font-medium'
+                ? 'bg-[#00395d] text-white font-bold border-b-2 border-[#00AEEF]'
+                : 'text-[#b3d4e8] hover:text-white hover:bg-[#00395d]/60 font-medium'
             }`}
           >
             <span className="text-left">
@@ -174,10 +177,10 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={() => onSelectTab('editor')}
-            className={`px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-1.5 leading-tight ${
+            className={`px-3 py-1.5 rounded-xs text-xs transition-colors flex items-center gap-1.5 leading-tight ${
               activeTab === 'editor'
-                ? 'bg-[#1e3e62] text-white font-bold border-b-2 border-[#8ba9d3]'
-                : 'text-[#aac9f4] hover:text-white hover:bg-[#0d3359]/60 font-medium'
+                ? 'bg-[#00395d] text-white font-bold border-b-2 border-[#00AEEF]'
+                : 'text-[#b3d4e8] hover:text-white hover:bg-[#00395d]/60 font-medium'
             }`}
           >
             <span className="text-left">
@@ -189,17 +192,17 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={() => onSelectTab('queue')}
-            className={`px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-2 leading-tight ${
+            className={`px-3 py-1.5 rounded-xs text-xs transition-colors flex items-center gap-2 leading-tight ${
               activeTab === 'queue'
-                ? 'bg-[#1e3e62] text-white font-bold border-b-2 border-[#8ba9d3]'
-                : 'text-[#aac9f4] hover:text-white hover:bg-[#0d3359]/60 font-medium'
+                ? 'bg-[#00395d] text-white font-bold border-b-2 border-[#00AEEF]'
+                : 'text-[#b3d4e8] hover:text-white hover:bg-[#00395d]/60 font-medium'
             }`}
           >
             <span className="text-left">
               Maker-Checker
               <br className="hidden xl:inline" /> Queue
             </span>
-            <span className="bg-[#dc2626] text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded leading-tight text-center">
+            <span className="bg-[#C8102E] text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-xs leading-tight text-center">
               {pendingQueueCount}
               <span className="block text-[8px] font-sans font-semibold">
                 Pending
@@ -210,10 +213,10 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={() => onSelectTab('audit')}
-            className={`px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-1.5 leading-tight ${
+            className={`px-3 py-1.5 rounded-xs text-xs transition-colors flex items-center gap-1.5 leading-tight ${
               activeTab === 'audit'
-                ? 'bg-[#1e3e62] text-white font-bold border-b-2 border-[#8ba9d3]'
-                : 'text-[#aac9f4] hover:text-white hover:bg-[#0d3359]/60 font-medium'
+                ? 'bg-[#00395d] text-white font-bold border-b-2 border-[#00AEEF]'
+                : 'text-[#b3d4e8] hover:text-white hover:bg-[#00395d]/60 font-medium'
             }`}
           >
             <span className="text-left">
@@ -225,10 +228,10 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={() => onSelectTab('config')}
-            className={`px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-1.5 leading-tight ${
+            className={`px-3 py-1.5 rounded-xs text-xs transition-colors flex items-center gap-1.5 leading-tight ${
               activeTab === 'config'
-                ? 'bg-[#1e3e62] text-white font-bold border-b-2 border-[#8ba9d3]'
-                : 'text-[#aac9f4] hover:text-white hover:bg-[#0d3359]/60 font-medium'
+                ? 'bg-[#00395d] text-white font-bold border-b-2 border-[#00AEEF]'
+                : 'text-[#b3d4e8] hover:text-white hover:bg-[#00395d]/60 font-medium'
             }`}
           >
             <span className="text-left">
@@ -240,8 +243,8 @@ export const TopNav: React.FC<TopNavProps> = ({
 
         {/* Global Search Input */}
         <div ref={searchRef} className="relative w-56 xl:w-72 shrink-0">
-          <div className="flex items-center bg-[#103458] border border-[#254f7a] rounded px-2.5 py-1.5 focus-within:border-[#8ba9d3]">
-            <Search className="w-3.5 h-3.5 text-[#8ba9d3] shrink-0 mr-2" />
+          <div className="flex items-center bg-[#001b2e] border border-[#005a8c] rounded-xs px-2.5 py-1.5 focus-within:border-[#00AEEF]">
+            <Search className="w-3.5 h-3.5 text-[#00AEEF] shrink-0 mr-2" />
             <input
               type="text"
               value={globalSearch}
@@ -251,13 +254,13 @@ export const TopNav: React.FC<TopNavProps> = ({
                 setSearchFocused(true);
               }}
               placeholder="Search reference tables, schemas, or audit IDs..."
-              className="bg-transparent text-xs text-white placeholder-[#8ba9d3]/80 focus:outline-none w-full"
+              className="bg-transparent text-xs text-white placeholder-[#8ab8d6]/80 focus:outline-none w-full"
             />
             {globalSearch && (
               <button
                 type="button"
                 onClick={() => setGlobalSearch('')}
-                className="text-[10px] text-[#8ba9d3] hover:text-white ml-1"
+                className="text-[10px] text-[#00AEEF] hover:text-white ml-1"
               >
                 Clear
               </button>
@@ -266,21 +269,21 @@ export const TopNav: React.FC<TopNavProps> = ({
 
           {/* Live Global Search Dropdown */}
           {searchFocused && trimmedQuery.length > 0 && (
-            <div className="absolute right-0 mt-1.5 w-96 bg-white border border-[#cbd5e1] rounded shadow-lg text-[#0d1c2f] z-50 max-h-96 overflow-y-auto p-2">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-[#64748b] px-2 py-1">
-                Global Partition &amp; Audit Search
+            <div className="absolute right-0 mt-1.5 w-96 bg-white border border-[#00AEEF] rounded-xs shadow-lg text-[#00263e] z-50 max-h-96 overflow-y-auto p-2">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-[#5c6f7e] px-2 py-1">
+                Barclays Global Partition &amp; Audit Search
               </div>
               {matchedDatasets.length === 0 &&
                 matchedCrs.length === 0 &&
                 matchedLogs.length === 0 && (
-                  <div className="px-3 py-4 text-xs text-[#64748b] text-center">
+                  <div className="px-3 py-4 text-xs text-[#5c6f7e] text-center">
                     No matching datasets, change requests, or audit hashes for &ldquo;{globalSearch}&rdquo;.
                   </div>
                 )}
 
               {matchedDatasets.length > 0 && (
                 <div className="mb-2">
-                  <div className="text-[10px] font-semibold text-[#01284b] px-2 py-1 bg-[#eff4ff] rounded">
+                  <div className="text-[10px] font-bold text-[#00395d] px-2 py-1 bg-[#e5f4fb] rounded-xs">
                     Reference Datasets ({matchedDatasets.length})
                   </div>
                   {matchedDatasets.map((ds) => (
@@ -292,13 +295,13 @@ export const TopNav: React.FC<TopNavProps> = ({
                         setSearchFocused(false);
                         setGlobalSearch('');
                       }}
-                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#eff4ff] rounded flex items-center justify-between text-xs mt-0.5"
+                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#f0f8fc] rounded-xs flex items-center justify-between text-xs mt-0.5"
                     >
                       <span className="flex items-center gap-2">
-                        <Database className="w-3.5 h-3.5 text-[#01284b]" />
+                        <Database className="w-3.5 h-3.5 text-[#0076b6]" />
                         <span className="font-semibold">{ds.name}</span>
                       </span>
-                      <span className="font-mono text-[10px] text-[#64748b]">
+                      <span className="font-mono text-[10px] text-[#5c6f7e]">
                         {ds.code}
                       </span>
                     </button>
@@ -308,7 +311,7 @@ export const TopNav: React.FC<TopNavProps> = ({
 
               {matchedCrs.length > 0 && (
                 <div className="mb-2">
-                  <div className="text-[10px] font-semibold text-[#01284b] px-2 py-1 bg-[#eff4ff] rounded">
+                  <div className="text-[10px] font-bold text-[#00395d] px-2 py-1 bg-[#e5f4fb] rounded-xs">
                     Maker-Checker Queue ({matchedCrs.length})
                   </div>
                   {matchedCrs.map((cr) => (
@@ -320,14 +323,14 @@ export const TopNav: React.FC<TopNavProps> = ({
                         setSearchFocused(false);
                         setGlobalSearch('');
                       }}
-                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#eff4ff] rounded flex items-center justify-between text-xs mt-0.5"
+                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#f0f8fc] rounded-xs flex items-center justify-between text-xs mt-0.5"
                     >
                       <span className="flex items-center gap-2">
-                        <GitPullRequest className="w-3.5 h-3.5 text-[#4b41e1]" />
+                        <GitPullRequest className="w-3.5 h-3.5 text-[#00AEEF]" />
                         <span className="font-mono font-bold">{cr.id}</span>
                         <span className="truncate max-w-[140px]">{cr.title}</span>
                       </span>
-                      <span className="font-mono text-[10px] text-[#64748b]">
+                      <span className="font-mono text-[10px] text-[#5c6f7e]">
                         {cr.ticketId}
                       </span>
                     </button>
@@ -337,7 +340,7 @@ export const TopNav: React.FC<TopNavProps> = ({
 
               {matchedLogs.length > 0 && (
                 <div>
-                  <div className="text-[10px] font-semibold text-[#01284b] px-2 py-1 bg-[#eff4ff] rounded">
+                  <div className="text-[10px] font-bold text-[#00395d] px-2 py-1 bg-[#e5f4fb] rounded-xs">
                     Statutory Audit Logs ({matchedLogs.length})
                   </div>
                   {matchedLogs.map((log) => (
@@ -349,14 +352,14 @@ export const TopNav: React.FC<TopNavProps> = ({
                         setSearchFocused(false);
                         setGlobalSearch('');
                       }}
-                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#eff4ff] rounded flex items-center justify-between text-xs mt-0.5"
+                      className="w-full text-left px-2.5 py-1.5 hover:bg-[#f0f8fc] rounded-xs flex items-center justify-between text-xs mt-0.5"
                     >
                       <span className="flex items-center gap-2">
-                        <FileText className="w-3.5 h-3.5 text-[#059669]" />
+                        <FileText className="w-3.5 h-3.5 text-[#008a4b]" />
                         <span className="font-mono font-semibold">{log.commitHash}</span>
                         <span className="truncate max-w-[150px]">{log.title}</span>
                       </span>
-                      <span className="font-mono text-[10px] text-[#64748b]">
+                      <span className="font-mono text-[10px] text-[#5c6f7e]">
                         {log.datasetCode}
                       </span>
                     </button>
@@ -368,33 +371,33 @@ export const TopNav: React.FC<TopNavProps> = ({
         </div>
       </div>
 
-      {/* Right Cap: Role Scope Switcher, Notifications, & Executive Avatar */}
-      <div className="bg-white flex items-center gap-2.5 px-3 py-1 shrink-0">
+      {/* Right Cap: Barclays Role Scope Switcher, Notifications, & Executive Avatar */}
+      <div className="bg-white flex items-center gap-2.5 px-3 py-1 shrink-0 border-l border-[#d4dfe6]">
         {/* ROLE SCOPE Selector */}
         <div ref={roleRef} className="relative">
           <button
             type="button"
             onClick={() => setRoleDropdownOpen((prev) => !prev)}
-            className="bg-[#1e3e62] hover:bg-[#01284b] text-white rounded px-3 py-1 flex flex-col items-start min-w-[98px] transition-colors"
+            className="bg-[#00395d] hover:bg-[#00263e] border-l-2 border-l-[#00AEEF] text-white rounded-xs px-3 py-1 flex flex-col items-start min-w-[102px] transition-colors"
           >
-            <span className="text-[8.5px] font-mono uppercase tracking-wider text-[#aac9f4] leading-none">
+            <span className="text-[8.5px] font-mono uppercase tracking-wider text-[#00AEEF] font-bold leading-none">
               ROLE SCOPE
             </span>
             <div className="flex items-center justify-between w-full gap-2 mt-0.5">
               <span className="text-xs font-bold whitespace-nowrap">
                 {currentRole.label}
               </span>
-              <ChevronDown className="w-3 h-3 text-[#aac9f4]" />
+              <ChevronDown className="w-3 h-3 text-[#00AEEF]" />
             </div>
           </button>
 
           {roleDropdownOpen && (
-            <div className="absolute right-0 mt-1.5 w-64 bg-white border border-[#cbd5e1] rounded shadow-lg p-1.5 z-50">
+            <div className="absolute right-0 mt-1.5 w-64 bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-lg p-1.5 z-50">
               <div className="px-2.5 py-1.5 border-b border-[#e2e8f0]">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-[#64748b]">
-                  Active Governance Principal
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[#5c6f7e]">
+                  Barclays Authenticated Principal
                 </div>
-                <div className="text-xs font-bold text-[#0d1c2f] mt-0.5">
+                <div className="text-xs font-bold text-[#00263e] mt-0.5">
                   {currentRole.principalName} ({currentRole.principalUid})
                 </div>
               </div>
@@ -409,34 +412,34 @@ export const TopNav: React.FC<TopNavProps> = ({
                         onSelectRole(role);
                         setRoleDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-2.5 py-2 rounded flex items-start gap-2.5 transition-colors ${
+                      className={`w-full text-left px-2.5 py-2 rounded-xs flex items-start gap-2.5 transition-colors ${
                         isSelected
-                          ? 'bg-[#eff4ff] text-[#01284b]'
-                          : 'hover:bg-[#f8fafc] text-[#0d1c2f]'
+                          ? 'bg-[#e5f4fb] text-[#00395d] border-l-2 border-l-[#00AEEF]'
+                          : 'hover:bg-[#f4f7f9] text-[#00263e]'
                       }`}
                     >
                       {role.id === 'PS Maker' && (
-                        <UserCheck className="w-4 h-4 text-[#4b41e1] shrink-0 mt-0.5" />
+                        <UserCheck className="w-4 h-4 text-[#0076b6] shrink-0 mt-0.5" />
                       )}
                       {role.id === 'PS Checker' && (
-                        <ShieldCheck className="w-4 h-4 text-[#059669] shrink-0 mt-0.5" />
+                        <ShieldCheck className="w-4 h-4 text-[#008a4b] shrink-0 mt-0.5" />
                       )}
                       {role.id === 'Auditor Read-Only' && (
-                        <Eye className="w-4 h-4 text-[#64748b] shrink-0 mt-0.5" />
+                        <Eye className="w-4 h-4 text-[#5c6f7e] shrink-0 mt-0.5" />
                       )}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-bold">{role.label}</span>
                           {isSelected && (
-                            <span className="font-mono text-[9px] font-bold bg-[#01284b] text-white px-1.5 py-0.2 rounded">
+                            <span className="font-mono text-[9px] font-bold bg-[#00395d] text-[#00AEEF] px-1.5 py-0.2 rounded-xs">
                               ACTIVE
                             </span>
                           )}
                         </div>
-                        <div className="text-[11px] text-[#43474e] mt-0.5">
+                        <div className="text-[11px] text-[#33414c] mt-0.5">
                           {role.principalName} • {role.department}
                         </div>
-                        <div className="font-mono text-[10px] text-[#64748b]">
+                        <div className="font-mono text-[10px] text-[#5c6f7e]">
                           {role.principalUid}
                         </div>
                       </div>
@@ -453,34 +456,34 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={() => setNotificationsOpen((prev) => !prev)}
-            className="relative p-1.5 rounded hover:bg-[#eff4ff] text-[#43474e] hover:text-[#01284b] transition-colors"
-            title="Statutory Governance Alerts"
+            className="relative p-1.5 rounded-xs hover:bg-[#e5f4fb] text-[#33414c] hover:text-[#00395d] transition-colors"
+            title="Barclays Statutory Governance Alerts"
           >
             <Bell className="w-4 h-4" />
             {pendingQueueCount > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#ba1a1a]" />
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#C8102E]" />
             )}
           </button>
 
           {notificationsOpen && (
-            <div className="absolute right-0 mt-1.5 w-80 bg-white border border-[#cbd5e1] rounded shadow-lg p-3 z-50">
+            <div className="absolute right-0 mt-1.5 w-80 bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-lg p-3 z-50">
               <div className="flex items-center justify-between pb-2 border-b border-[#e2e8f0]">
-                <span className="text-xs font-bold text-[#0d1c2f]">
-                  Statutory Governance Alerts
+                <span className="text-xs font-bold text-[#00263e]">
+                  Barclays Governance Alerts
                 </span>
-                <span className="font-mono text-[10px] text-[#ba1a1a] font-semibold">
+                <span className="font-mono text-[10px] text-[#C8102E] font-bold">
                   {pendingQueueCount} SLA Active
                 </span>
               </div>
               <div className="divide-y divide-[#e2e8f0] max-h-64 overflow-y-auto">
                 <div className="py-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold text-[#ba1a1a]">
+                    <span className="font-mono text-[10px] font-bold text-[#C8102E]">
                       CR-2024-8891 • SLA &lt; 2H
                     </span>
-                    <span className="font-mono text-[10px] text-[#64748b]">35m ago</span>
+                    <span className="font-mono text-[10px] text-[#5c6f7e]">35m ago</span>
                   </div>
-                  <p className="text-xs font-semibold text-[#0d1c2f] mt-0.5">
+                  <p className="text-xs font-semibold text-[#00263e] mt-0.5">
                     CURR_REF_V2 awaiting Checker quorum
                   </p>
                   <button
@@ -489,19 +492,19 @@ export const TopNav: React.FC<TopNavProps> = ({
                       onJumpToCr('CR-2024-8891');
                       setNotificationsOpen(false);
                     }}
-                    className="text-[11px] font-semibold text-[#4b41e1] hover:underline mt-1"
+                    className="text-[11px] font-bold text-[#0076b6] hover:text-[#00AEEF] mt-1"
                   >
                     Inspect Staged Diff →
                   </button>
                 </div>
                 <div className="py-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold text-[#01284b]">
+                    <span className="font-mono text-[10px] font-bold text-[#00395d]">
                       STATUTORY FREEZE SCHEDULED
                     </span>
-                    <span className="font-mono text-[10px] text-[#64748b]">T-minus 4d</span>
+                    <span className="font-mono text-[10px] text-[#5c6f7e]">T-minus 4d</span>
                   </div>
-                  <p className="text-xs text-[#43474e] mt-0.5">
+                  <p className="text-xs text-[#33414c] mt-0.5">
                     GL_ACCT_TREE bi-annual statutory ledger lock on Nov 30, 23:59 UTC.
                   </p>
                 </div>
@@ -512,7 +515,7 @@ export const TopNav: React.FC<TopNavProps> = ({
 
         {/* User Avatar */}
         <div
-          className="w-7 h-7 rounded-full overflow-hidden border border-[#cbd5e1] bg-[#eff4ff] flex items-center justify-center shrink-0"
+          className="w-7 h-7 rounded-full overflow-hidden border-2 border-[#00AEEF] bg-[#e5f4fb] flex items-center justify-center shrink-0"
           title={`${currentRole.principalName} (${currentRole.principalUid})`}
         >
           {!avatarError ? (
@@ -524,7 +527,7 @@ export const TopNav: React.FC<TopNavProps> = ({
               className="w-full h-full object-cover"
             />
           ) : (
-            <span className="font-mono text-[10px] font-bold text-[#01284b]">
+            <span className="font-mono text-[10px] font-bold text-[#00395d]">
               ER
             </span>
           )}

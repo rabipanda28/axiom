@@ -95,7 +95,6 @@ export default function App() {
     );
 
     if (newStatus === 'approved') {
-      // Update corresponding dataset governance status
       setDatasets((prev) =>
         prev.map((ds) =>
           ds.code === targetCr.targetCode
@@ -115,7 +114,6 @@ export default function App() {
         )
       );
 
-      // Prepend statutory log entry
       const newLog: StatutoryLogEntry = {
         id: `log-${Date.now()}`,
         eventId: `AUD-2024-${Math.floor(99500 + Math.random() * 499)}`,
@@ -173,7 +171,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9ff] text-[#0d1c2f]">
+    <div className="min-h-screen flex flex-col bg-[#f4f7f9] text-[#00263e]">
       {/* Top Navigation Chrome */}
       <TopNav
         activeTab={activeTab}
@@ -183,7 +181,7 @@ export default function App() {
         onSelectRole={(role) => {
           setCurrentRole(role);
           triggerToast(
-            `Switched active governance role scope to ${role.label} (${role.principalName} / ${role.principalUid}).`,
+            `Switched active Barclays governance role scope to ${role.label} (${role.principalName} / ${role.principalUid}).`,
             'info'
           );
         }}
@@ -277,33 +275,33 @@ export default function App() {
         </main>
       </div>
 
-      {/* Level 4 Institutional Toast Notification */}
+      {/* Level 4 Barclays Institutional Toast Notification */}
       {toast && (
         <div
-          className={`fixed bottom-4 right-4 z-50 max-w-md bg-white rounded px-4 py-3 shadow-lg border flex items-start gap-2.5 text-xs ${
+          className={`fixed bottom-4 right-4 z-50 max-w-md bg-white rounded-xs px-4 py-3 shadow-lg border border-l-4 flex items-start gap-2.5 text-xs ${
             toast.type === 'success'
-              ? 'border-[#059669]'
+              ? 'border-[#cbd9e3] border-l-[#008a4b]'
               : toast.type === 'warning'
-              ? 'border-[#ba1a1a]'
-              : 'border-[#01284b]'
+              ? 'border-[#cbd9e3] border-l-[#C8102E]'
+              : 'border-[#cbd9e3] border-l-[#00AEEF]'
           }`}
         >
           {toast.type === 'success' && (
-            <CheckCircle2 className="w-4 h-4 text-[#059669] shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-4 h-4 text-[#008a4b] shrink-0 mt-0.5" />
           )}
           {toast.type === 'warning' && (
-            <AlertTriangle className="w-4 h-4 text-[#ba1a1a] shrink-0 mt-0.5" />
+            <AlertTriangle className="w-4 h-4 text-[#C8102E] shrink-0 mt-0.5" />
           )}
           {toast.type === 'info' && (
-            <Info className="w-4 h-4 text-[#01284b] shrink-0 mt-0.5" />
+            <Info className="w-4 h-4 text-[#0076b6] shrink-0 mt-0.5" />
           )}
-          <div className="flex-1 text-[#0d1c2f] font-medium leading-snug">
+          <div className="flex-1 text-[#00263e] font-medium leading-snug">
             {toast.message}
           </div>
           <button
             type="button"
             onClick={() => setToast(null)}
-            className="text-[#64748b] hover:text-[#0d1c2f]"
+            className="text-[#5c6f7e] hover:text-[#00263e]"
           >
             <X className="w-3.5 h-3.5" />
           </button>

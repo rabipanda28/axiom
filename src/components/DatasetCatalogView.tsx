@@ -101,6 +101,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
   const handleExportMetadata = () => {
     const payload = {
       exportedAt: new Date().toISOString(),
+      institution: 'Barclays Corporate & Investment Bank (BCIB)',
       cluster: 'PROD-CLUSTER-US-EAST',
       storageEngine: 'Arrow IPC Zero-Copy',
       totalRegisteredDatasets: 42,
@@ -119,10 +120,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'axiom_rdm_catalog_metadata_v4.18.json';
+    a.download = 'barclays_axiom_rdm_catalog_v4.18.json';
     a.click();
     URL.revokeObjectURL(url);
-    onNotify('Exported deterministic catalog metadata JSON (SHA-256 attested).', 'success');
+    onNotify('Exported Barclays deterministic catalog metadata JSON (SHA-256 attested).', 'success');
   };
 
   const handleCreateDatasetSubmit = (e: React.FormEvent) => {
@@ -170,17 +171,17 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
   const renderDatasetIcon = (iconType: DatasetItem['iconType']) => {
     switch (iconType) {
       case 'globe_ban':
-        return <Ban className="w-4 h-4 text-[#01284b]" />;
+        return <Ban className="w-4 h-4 text-[#0076b6]" />;
       case 'currency':
-        return <CircleDollarSign className="w-4 h-4 text-[#01284b]" />;
+        return <CircleDollarSign className="w-4 h-4 text-[#0076b6]" />;
       case 'hierarchy':
-        return <Network className="w-4 h-4 text-[#01284b]" />;
+        return <Network className="w-4 h-4 text-[#0076b6]" />;
       case 'briefcase':
-        return <Briefcase className="w-4 h-4 text-[#01284b]" />;
+        return <Briefcase className="w-4 h-4 text-[#0076b6]" />;
       case 'tax_doc':
-        return <FileSpreadsheet className="w-4 h-4 text-[#01284b]" />;
+        return <FileSpreadsheet className="w-4 h-4 text-[#0076b6]" />;
       case 'calendar':
-        return <Calendar className="w-4 h-4 text-[#01284b]" />;
+        return <Calendar className="w-4 h-4 text-[#0076b6]" />;
     }
   };
 
@@ -189,17 +190,17 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       {/* Top Breadcrumb & Title Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
-          <div className="text-[10px] font-mono uppercase tracking-[0.06em] text-[#64748b]">
-            ENTERPRISE REFERENCE ARCHITECTURE /{' '}
-            <span className="font-bold text-[#01284b]">
+          <div className="text-[10px] font-mono uppercase tracking-[0.06em] text-[#5c6f7e]">
+            BARCLAYS ENTERPRISE REFERENCE ARCHITECTURE /{' '}
+            <span className="font-bold text-[#0076b6]">
               MASTER PARTITION STORE
             </span>
           </div>
           <div className="flex items-center gap-3 mt-1">
-            <h1 className="text-[22px] font-bold text-[#0d1c2f] tracking-tight leading-tight">
+            <h1 className="text-[22px] font-bold text-[#00263e] tracking-tight leading-tight">
               Reference Dataset Catalog
             </h1>
-            <span className="bg-[#00462f] text-[#85f8c4] font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+            <span className="bg-[#00395d] border border-[#00AEEF]/60 text-[#00AEEF] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs uppercase tracking-wider">
               STATE: DETERMINISTIC
             </span>
           </div>
@@ -210,27 +211,27 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
           <button
             type="button"
             onClick={handleExportMetadata}
-            className="bg-[#e6eeff] hover:bg-[#d5e3fd] text-[#01284b] text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="bg-[#e5f4fb] hover:bg-[#cbe9f7] border border-[#b8e1f5] text-[#00395d] text-xs font-semibold px-3 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors whitespace-nowrap"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 text-[#0076b6]" />
             <span>Export Metadata</span>
           </button>
 
           <button
             type="button"
             onClick={() => setImportModalOpen(true)}
-            className="bg-[#e6eeff] hover:bg-[#d5e3fd] text-[#01284b] text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="bg-[#e5f4fb] hover:bg-[#cbe9f7] border border-[#b8e1f5] text-[#00395d] text-xs font-semibold px-3 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors whitespace-nowrap"
           >
-            <Upload className="w-3.5 h-3.5" />
+            <Upload className="w-3.5 h-3.5 text-[#0076b6]" />
             <span>Import CSV/JSON</span>
           </button>
 
           <button
             type="button"
             onClick={() => setNewDatasetModalOpen(true)}
-            className="bg-[#01284b] hover:bg-[#1e3e62] text-white text-xs font-semibold px-3.5 py-1.5 rounded flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="bg-[#00395d] hover:bg-[#00263e] border-b-2 border-b-[#00AEEF] text-white text-xs font-semibold px-3.5 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors whitespace-nowrap"
           >
-            <PlusSquare className="w-3.5 h-3.5" />
+            <PlusSquare className="w-3.5 h-3.5 text-[#00AEEF]" />
             <span>New Dataset Def</span>
           </button>
         </div>
@@ -239,70 +240,70 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       {/* 4 KPI Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
         {/* Card 1 */}
-        <div className="bg-white border border-[#e2e8f0] rounded p-3.5 flex flex-col justify-between">
+        <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs p-3.5 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748b] leading-snug">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-snug">
                 TOTAL REFERENCE
                 <br />
                 DATASETS
               </div>
               <div className="flex items-baseline gap-2 mt-1.5">
-                <span className="text-[28px] font-bold text-[#0d1c2f] leading-none tabular-nums">
+                <span className="text-[28px] font-bold text-[#00263e] leading-none tabular-nums">
                   {datasets.length + 32}
                 </span>
-                <span className="text-xs font-semibold text-[#059669]">
+                <span className="text-xs font-semibold text-[#008a4b]">
                   Active &amp; Bound
                 </span>
               </div>
             </div>
-            <div className="w-8 h-8 rounded bg-[#e6eeff] text-[#01284b] flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xs bg-[#e5f4fb] text-[#0076b6] flex items-center justify-center shrink-0">
               <Database className="w-4 h-4" />
             </div>
           </div>
 
-          <div className="mt-3 pt-2.5 border-t border-[#f1f5f9] flex items-center gap-3 font-mono text-[10.5px] text-[#64748b]">
+          <div className="mt-3 pt-2.5 border-t border-[#edf2f6] flex items-center gap-3 font-mono text-[10.5px] text-[#5c6f7e]">
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#01284b]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00395d]" />
               28 Fin
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4b41e1]" />8 Geo
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00AEEF]" />8 Geo
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />6 Reg
+              <span className="w-1.5 h-1.5 rounded-full bg-[#008a4b]" />6 Reg
             </span>
           </div>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white border border-[#e2e8f0] rounded p-3.5 flex flex-col justify-between">
+        <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00395d] rounded-xs p-3.5 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748b] leading-snug">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-snug">
                 ACTIVE RECORDS MANAGED
               </div>
               <div className="flex items-baseline gap-2 mt-2">
-                <span className="text-[28px] font-bold text-[#0d1c2f] leading-none tabular-nums">
+                <span className="text-[28px] font-bold text-[#00263e] leading-none tabular-nums">
                   1.84M
                 </span>
-                <span className="font-mono text-[11px] text-[#64748b]">
+                <span className="font-mono text-[11px] text-[#5c6f7e]">
                   Rows in Sync
                 </span>
               </div>
             </div>
-            <div className="w-8 h-8 rounded bg-[#e6eeff] text-[#01284b] flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xs bg-[#e5f4fb] text-[#0076b6] flex items-center justify-center shrink-0">
               <Server className="w-4 h-4" />
             </div>
           </div>
 
-          <div className="mt-3 pt-2.5 border-t border-[#f1f5f9] flex items-center justify-between font-mono text-[10.5px]">
-            <span className="text-[#059669] font-semibold leading-tight">
+          <div className="mt-3 pt-2.5 border-t border-[#edf2f6] flex items-center justify-between font-mono text-[10.5px]">
+            <span className="text-[#008a4b] font-semibold leading-tight">
               ↑ +14.2k this
               <br />
               week
             </span>
-            <span className="text-[#64748b] text-right leading-tight">
+            <span className="text-[#5c6f7e] text-right leading-tight">
               42 Parquet
               <br />
               Partitions
@@ -311,34 +312,34 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white border border-[#e2e8f0] rounded p-3.5 flex flex-col justify-between">
+        <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#C8102E] rounded-xs p-3.5 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748b] leading-snug">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-snug">
                 PENDING DUAL-CONTROL
                 <br />
                 SIGN-OFF
               </div>
               <div className="flex items-baseline gap-2 mt-1.5">
-                <span className="text-[28px] font-bold text-[#ba1a1a] leading-none tabular-nums">
+                <span className="text-[28px] font-bold text-[#C8102E] leading-none tabular-nums">
                   {pendingQueueCount}
                 </span>
-                <span className="text-xs font-semibold text-[#ba1a1a]">
+                <span className="text-xs font-semibold text-[#C8102E]">
                   Change Batches
                 </span>
               </div>
             </div>
-            <div className="w-8 h-8 rounded bg-[#ffdad6] text-[#ba1a1a] flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xs bg-[#fde8eb] text-[#C8102E] flex items-center justify-center shrink-0">
               <ClipboardList className="w-4 h-4" />
             </div>
           </div>
 
-          <div className="mt-3 pt-2.5 border-t border-[#f1f5f9] flex items-center justify-between text-[11px]">
-            <span className="text-[#43474e]">Checker quorum pending</span>
+          <div className="mt-3 pt-2.5 border-t border-[#edf2f6] flex items-center justify-between text-[11px]">
+            <span className="text-[#33414c]">Checker quorum pending</span>
             <button
               type="button"
               onClick={onGoToQueue}
-              className="font-mono font-bold text-[#4b41e1] hover:underline flex items-center gap-0.5"
+              className="font-mono font-bold text-[#0076b6] hover:text-[#00AEEF] hover:underline flex items-center gap-0.5"
             >
               Queue →
             </button>
@@ -346,33 +347,33 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
         </div>
 
         {/* Card 4 */}
-        <div className="bg-white border border-[#e2e8f0] rounded p-3.5 flex flex-col justify-between">
+        <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#008a4b] rounded-xs p-3.5 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748b] leading-snug">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-snug">
                 AUDITED CHANGES (30D)
               </div>
               <div className="flex items-baseline gap-1.5 mt-2">
-                <span className="text-[28px] font-bold text-[#0d1c2f] leading-none tabular-nums">
+                <span className="text-[28px] font-bold text-[#00263e] leading-none tabular-nums">
                   1,289
                 </span>
-                <span className="font-mono text-[10.5px] font-bold text-[#059669]">
+                <span className="font-mono text-[10.5px] font-bold text-[#008a4b]">
                   100% SHA-256
                 </span>
               </div>
             </div>
-            <div className="w-8 h-8 rounded bg-[#e6eeff] text-[#01284b] flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xs bg-[#e5f4fb] text-[#0076b6] flex items-center justify-center shrink-0">
               <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
 
-          <div className="mt-3 pt-2.5 border-t border-[#f1f5f9] flex items-center justify-between">
-            <span className="font-mono text-[10.5px] text-[#64748b] leading-tight">
+          <div className="mt-3 pt-2.5 border-t border-[#edf2f6] flex items-center justify-between">
+            <span className="font-mono text-[10.5px] text-[#5c6f7e] leading-tight">
               Zero delta
               <br />
               deviations
             </span>
-            <span className="bg-[#e6eeff] text-[#01284b] font-mono text-[10px] font-bold px-2.5 py-1 rounded leading-tight text-center">
+            <span className="bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] font-mono text-[10px] font-bold px-2.5 py-1 rounded-xs leading-tight text-center">
               SOC-1/2
               <br />
               Ready
@@ -382,11 +383,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       </div>
 
       {/* Filter & Domain Tabs Container */}
-      <div className="bg-white border border-[#e2e8f0] rounded p-3 space-y-3">
+      <div className="bg-white border border-[#cbd9e3] rounded-xs p-3 space-y-3">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
           {/* Search Input */}
-          <div className="flex-1 flex items-center bg-[#eff4ff]/80 border border-[#d5e3fd] rounded px-3 py-1.5 focus-within:border-[#01284b]">
-            <Search className="w-3.5 h-3.5 text-[#64748b] mr-2 shrink-0" />
+          <div className="flex-1 flex items-center bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs px-3 py-1.5 focus-within:border-[#00AEEF]">
+            <Search className="w-3.5 h-3.5 text-[#0076b6] mr-2 shrink-0" />
             <input
               type="text"
               value={searchQuery}
@@ -395,7 +396,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 setCurrentPage(1);
               }}
               placeholder="Filter datasets by name, code, domain, or schema..."
-              className="w-full bg-transparent text-xs text-[#0d1c2f] placeholder-[#64748b] focus:outline-none"
+              className="w-full bg-transparent text-xs text-[#00263e] placeholder-[#5c6f7e] focus:outline-none"
             />
           </div>
 
@@ -408,7 +409,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 setCurrentPage(1);
               }}
               aria-label="Filter by governance status"
-              className="bg-[#eff4ff] border border-[#d5e3fd] rounded px-3 py-1.5 text-xs font-medium text-[#0d1c2f] focus:outline-none focus:border-[#01284b]"
+              className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs px-3 py-1.5 text-xs font-medium text-[#00263e] focus:outline-none focus:border-[#00AEEF]"
             >
               <option value="all">Status: All (42)</option>
               <option value="pending_signoff">Status: Pending Sign-Off</option>
@@ -420,10 +421,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               type="button"
               onClick={() => setCompactGrid((prev) => !prev)}
               title={compactGrid ? 'Switch to standard density' : 'Switch to condensed density'}
-              className={`p-1.5 rounded border transition-colors ${
+              className={`p-1.5 rounded-xs border transition-colors ${
                 compactGrid
-                  ? 'bg-[#01284b] text-white border-[#01284b]'
-                  : 'bg-[#eff4ff] text-[#0d1c2f] border-[#d5e3fd] hover:bg-[#d5e3fd]'
+                  ? 'bg-[#00395d] text-[#00AEEF] border-[#00395d]'
+                  : 'bg-[#f2f8fc] text-[#00395d] border-[#cbd9e3] hover:bg-[#e5f4fb]'
               }`}
             >
               {compactGrid ? (
@@ -453,10 +454,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                   setDomainTab(tab.id);
                   setCurrentPage(1);
                 }}
-                className={`px-3 py-1 rounded text-xs transition-colors whitespace-nowrap ${
+                className={`px-3 py-1 rounded-xs text-xs transition-colors whitespace-nowrap ${
                   isActive
-                    ? 'bg-[#01284b] text-white font-semibold'
-                    : 'bg-[#eff4ff] text-[#0d1c2f] hover:bg-[#d5e3fd] font-medium'
+                    ? 'bg-[#00395d] text-white font-semibold border-b-2 border-b-[#00AEEF]'
+                    : 'bg-[#f2f8fc] text-[#00263e] hover:bg-[#e5f4fb] font-medium border border-[#d4dfe6]'
                 }`}
               >
                 {tab.label}
@@ -467,11 +468,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       </div>
 
       {/* Main Reference Datasets Table */}
-      <div className="bg-white border border-[#e2e8f0] rounded overflow-hidden">
+      <div className="bg-white border border-[#cbd9e3] rounded-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#eff4ff]/80 border-b border-[#e2e8f0] text-[10px] font-bold uppercase tracking-wider text-[#64748b]">
+              <tr className="bg-[#edf5fa] border-b border-[#cbd9e3] text-[10px] font-bold uppercase tracking-wider text-[#00395d]">
                 <th className="py-2.5 px-3.5">DATASET IDENTIFIER</th>
                 <th className="py-2.5 px-3">DOMAIN</th>
                 <th className="py-2.5 px-3">
@@ -497,12 +498,12 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 <th className="py-2.5 px-3.5 text-right">OPERATIONAL ACTIONS</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#f1f5f9]">
+            <tbody className="divide-y divide-[#e8eff4]">
               {paginatedDatasets.length === 0 ? (
                 <tr>
                   <td
                     colSpan={7}
-                    className="py-8 text-center text-xs text-[#64748b]"
+                    className="py-8 text-center text-xs text-[#5c6f7e]"
                   >
                     No reference datasets match your current filter criteria.
                   </td>
@@ -511,7 +512,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 paginatedDatasets.map((ds) => (
                   <tr
                     key={ds.id}
-                    className="hover:bg-[#f8fafc] transition-colors"
+                    className="hover:bg-[#f4f9fc] transition-colors"
                   >
                     {/* DATASET IDENTIFIER */}
                     <td
@@ -521,20 +522,20 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-start gap-2.5">
-                          <div className="w-7 h-7 rounded bg-[#eff4ff] flex items-center justify-center shrink-0 mt-0.5">
+                          <div className="w-7 h-7 rounded-xs bg-[#e5f4fb] border border-[#cbe9f7] flex items-center justify-center shrink-0 mt-0.5">
                             {renderDatasetIcon(ds.iconType)}
                           </div>
                           <div>
-                            <div className="text-[13px] font-bold text-[#0d1c2f] leading-snug">
+                            <div className="text-[13px] font-bold text-[#00263e] leading-snug">
                               {ds.name}
                             </div>
-                            <div className="font-mono text-[10.5px] text-[#64748b] mt-0.5">
+                            <div className="font-mono text-[10.5px] text-[#5c6f7e] mt-0.5">
                               {ds.code}
                             </div>
                           </div>
                         </div>
                         {ds.verified && (
-                          <CheckCircle2 className="w-4 h-4 text-[#10b981] shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-[#008a4b] shrink-0" />
                         )}
                       </div>
                     </td>
@@ -546,10 +547,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                       } px-3 align-middle`}
                     >
                       <span
-                        className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded ${
+                        className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded-xs ${
                           ds.domain === 'Accounting'
-                            ? 'bg-[#e2dfff] text-[#3323cc]'
-                            : 'bg-[#eff4ff] text-[#01284b]'
+                            ? 'bg-[#e5f4fb] text-[#005a8c] border border-[#b8e1f5]'
+                            : 'bg-[#f0f6fa] text-[#00395d] border border-[#d4dfe6]'
                         }`}
                       >
                         {ds.domain}
@@ -562,10 +563,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                         compactGrid ? 'py-2' : 'py-3'
                       } px-3 align-middle`}
                     >
-                      <div className="font-mono text-[11.5px] font-bold text-[#0d1c2f]">
+                      <div className="font-mono text-[11.5px] font-bold text-[#00263e]">
                         {ds.version}
                       </div>
-                      <div className="text-[11px] text-[#64748b]">
+                      <div className="text-[11px] text-[#5c6f7e]">
                         {ds.publishedAgo} by {ds.publisher}
                       </div>
                     </td>
@@ -574,7 +575,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                     <td
                       className={`${
                         compactGrid ? 'py-2' : 'py-3'
-                      } px-3 align-middle text-right font-mono text-xs font-bold text-[#0d1c2f] tabular-nums`}
+                      } px-3 align-middle text-right font-mono text-xs font-bold text-[#00263e] tabular-nums`}
                     >
                       {ds.rowVolume.toLocaleString()}
                     </td>
@@ -586,8 +587,8 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                       } px-3 align-middle`}
                     >
                       {ds.governanceState === 'pending_signoff' && (
-                        <div className="inline-flex items-center gap-2 bg-[#ffdad6]/80 text-[#93000a] text-[11px] font-bold px-2.5 py-1 rounded">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#ba1a1a] shrink-0" />
+                        <div className="inline-flex items-center gap-2 bg-[#fde8eb] border border-[#f8b4be] text-[#9e0b22] text-[11px] font-bold px-2.5 py-1 rounded-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] shrink-0" />
                           <span className="leading-tight">
                             {ds.pendingCount} Pending
                             <br />
@@ -596,8 +597,8 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                         </div>
                       )}
                       {ds.governanceState === 'synced_active' && (
-                        <div className="inline-flex items-center gap-2 bg-[#d5e3fd]/80 text-[#01284b] text-[11px] font-bold px-2.5 py-1 rounded">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#01284b] shrink-0" />
+                        <div className="inline-flex items-center gap-2 bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] text-[11px] font-bold px-2.5 py-1 rounded-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00AEEF] shrink-0" />
                           <span className="leading-tight">
                             Synced &amp;
                             <br />
@@ -606,8 +607,8 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                         </div>
                       )}
                       {ds.governanceState === 'review_due' && (
-                        <div className="inline-flex items-center gap-2 bg-[#d5e3fd]/80 text-[#01284b] text-[11px] font-bold px-2.5 py-1 rounded">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#01284b] shrink-0" />
+                        <div className="inline-flex items-center gap-2 bg-[#fff7e6] border border-[#ffd591] text-[#ad4e00] text-[11px] font-bold px-2.5 py-1 rounded-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#d46b08] shrink-0" />
                           <span className="leading-tight">
                             Review Due
                             <br />
@@ -624,16 +625,16 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                       } px-3 align-middle font-mono text-[11px]`}
                     >
                       {ds.changeVelocityAccentFirst ? (
-                        <span className="text-[#4b41e1] font-medium">
+                        <span className="text-[#0076b6] font-semibold">
                           {ds.changeVelocityAccent}
                         </span>
                       ) : (
                         <>
-                          <span className="text-[#64748b]">
+                          <span className="text-[#5c6f7e]">
                             {ds.changeVelocityPrimary}
                           </span>
                           {ds.changeVelocityAccent && (
-                            <span className="text-[#4b41e1] font-medium">
+                            <span className="text-[#0076b6] font-semibold">
                               {ds.changeVelocityAccent}
                             </span>
                           )}
@@ -654,7 +655,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                             onClick={() =>
                               onReviewStaging(ds.linkedCrId || 'CR-2024-8891')
                             }
-                            className="bg-[#01284b] hover:bg-[#1e3e62] text-white text-[11px] font-semibold px-3 py-1 rounded leading-tight text-center transition-colors"
+                            className="bg-[#00395d] hover:bg-[#00263e] border-l-2 border-l-[#00AEEF] text-white text-[11px] font-semibold px-3 py-1 rounded-xs leading-tight text-center transition-colors"
                           >
                             Review
                             <br />
@@ -664,7 +665,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                           <button
                             type="button"
                             onClick={() => onOpenEditor(ds.id)}
-                            className="bg-[#eff4ff] hover:bg-[#d5e3fd] text-[#0d1c2f] text-[11px] font-semibold px-3 py-1.5 rounded whitespace-nowrap transition-colors"
+                            className="bg-[#e5f4fb] hover:bg-[#cbe9f7] border border-[#b8e1f5] text-[#00395d] text-[11px] font-semibold px-3 py-1.5 rounded-xs whitespace-nowrap transition-colors"
                           >
                             Open Editor
                           </button>
@@ -674,7 +675,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                           type="button"
                           onClick={() => setHistoryModalDataset(ds)}
                           title="Inspect Commit History"
-                          className="p-1.5 rounded hover:bg-[#eff4ff] text-[#43474e] hover:text-[#01284b] transition-colors"
+                          className="p-1.5 rounded-xs hover:bg-[#e5f4fb] text-[#33414c] hover:text-[#00395d] transition-colors"
                         >
                           <History className="w-3.5 h-3.5" />
                         </button>
@@ -683,7 +684,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                           type="button"
                           onClick={() => setSchemaModalDataset(ds)}
                           title="Inspect DDL & Partition Schema"
-                          className="p-1.5 rounded hover:bg-[#eff4ff] text-[#43474e] hover:text-[#01284b] transition-colors"
+                          className="p-1.5 rounded-xs hover:bg-[#e5f4fb] text-[#33414c] hover:text-[#00395d] transition-colors"
                         >
                           <Braces className="w-3.5 h-3.5" />
                         </button>
@@ -697,13 +698,13 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
         </div>
 
         {/* Table Footer */}
-        <div className="bg-[#eff4ff]/50 border-t border-[#e2e8f0] px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px]">
-          <div className="flex items-center gap-2 text-[#43474e]">
-            <span className="font-semibold text-[#0d1c2f]">
+        <div className="bg-[#f2f8fc] border-t border-[#cbd9e3] px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px]">
+          <div className="flex items-center gap-2 text-[#33414c]">
+            <span className="font-semibold text-[#00263e]">
               Showing {paginatedDatasets.length} of 42 Registered Datasets
             </span>
-            <span className="text-[#cbd5e1]">|</span>
-            <span className="font-mono text-[10.5px] text-[#64748b]">
+            <span className="text-[#cbd9e3]">|</span>
+            <span className="font-mono text-[10.5px] text-[#5c6f7e]">
               Storage Engine: Arrow IPC Zero-Copy
             </span>
           </div>
@@ -713,7 +714,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               type="button"
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={safePage === 1}
-              className="px-2.5 py-1 rounded bg-white border border-[#e2e8f0] text-[#43474e] hover:bg-[#eff4ff] disabled:opacity-50 text-[11px] font-medium"
+              className="px-2.5 py-1 rounded-xs bg-white border border-[#cbd9e3] text-[#33414c] hover:bg-[#e5f4fb] disabled:opacity-50 text-[11px] font-medium"
             >
               Previous
             </button>
@@ -722,10 +723,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 key={pageNum}
                 type="button"
                 onClick={() => setCurrentPage(pageNum)}
-                className={`w-6 h-6 rounded text-[11px] font-mono font-bold flex items-center justify-center transition-colors ${
+                className={`w-6 h-6 rounded-xs text-[11px] font-mono font-bold flex items-center justify-center transition-colors ${
                   safePage === pageNum
-                    ? 'bg-[#01284b] text-white'
-                    : 'bg-[#eff4ff] text-[#0d1c2f] hover:bg-[#d5e3fd]'
+                    ? 'bg-[#00395d] text-[#00AEEF] border border-[#00AEEF]'
+                    : 'bg-[#e5f4fb] text-[#00263e] hover:bg-[#cbe9f7]'
                 }`}
               >
                 {pageNum}
@@ -735,7 +736,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               type="button"
               onClick={() => setCurrentPage((p) => Math.min(3, p + 1))}
               disabled={safePage === 3}
-              className="px-2.5 py-1 rounded bg-[#eff4ff] text-[#0d1c2f] hover:bg-[#d5e3fd] disabled:opacity-50 text-[11px] font-semibold"
+              className="px-2.5 py-1 rounded-xs bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] hover:bg-[#cbe9f7] disabled:opacity-50 text-[11px] font-semibold"
             >
               Next
             </button>
@@ -744,79 +745,79 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       </div>
 
       {/* Downstream Lineage & Ingestion Sync Status */}
-      <div className="bg-white border border-[#e2e8f0] rounded p-4">
+      <div className="bg-white border border-[#cbd9e3] rounded-xs p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Share2 className="w-4 h-4 text-[#01284b]" />
-            <h2 className="text-xs font-bold text-[#0d1c2f]">
+            <Share2 className="w-4 h-4 text-[#00AEEF]" />
+            <h2 className="text-xs font-bold text-[#00263e]">
               Downstream Lineage &amp; Ingestion Sync Status
             </h2>
           </div>
-          <span className="font-mono text-[10.5px] text-[#64748b]">
+          <span className="font-mono text-[10.5px] text-[#5c6f7e]">
             Cluster Hash: #0x8F9B2C1A
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
           {/* Kafka */}
-          <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
+          <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0d1c2f]">
+              <span className="text-xs font-bold text-[#00263e]">
                 Kafka Topic Ingest
               </span>
-              <span className="font-mono text-[10.5px] font-bold text-[#059669]">
+              <span className="font-mono text-[10.5px] font-bold text-[#008a4b]">
                 Active
               </span>
             </div>
-            <div className="font-mono text-[11px] text-[#64748b] mt-0.5">
+            <div className="font-mono text-[11px] text-[#5c6f7e] mt-0.5">
               pubsub.rdm.entity.updates
             </div>
-            <div className="w-full h-1.5 bg-[#cbd5e1] rounded-full overflow-hidden my-2.5">
-              <div className="w-[84%] h-full bg-[#10b981] rounded-full" />
+            <div className="w-full h-1.5 bg-[#cbd9e3] rounded-full overflow-hidden my-2.5">
+              <div className="w-[84%] h-full bg-[#008a4b] rounded-full" />
             </div>
-            <div className="font-mono text-[10.5px] text-[#64748b]">
+            <div className="font-mono text-[10.5px] text-[#5c6f7e]">
               Throughput: 4,820 msg/sec
             </div>
           </div>
 
           {/* Snowflake */}
-          <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
+          <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0d1c2f]">
+              <span className="text-xs font-bold text-[#00263e]">
                 Snowflake Warehouse Replica
               </span>
-              <span className="font-mono text-[10.5px] font-bold text-[#00462f]">
+              <span className="font-mono text-[10.5px] font-bold text-[#0076b6]">
                 Synced
               </span>
             </div>
-            <div className="font-mono text-[11px] text-[#64748b] mt-0.5">
+            <div className="font-mono text-[11px] text-[#5c6f7e] mt-0.5">
               CORP_REF_DB.PUBLIC
             </div>
-            <div className="w-full h-1.5 bg-[#cbd5e1] rounded-full overflow-hidden my-2.5">
-              <div className="w-full h-full bg-[#10b981] rounded-full" />
+            <div className="w-full h-1.5 bg-[#cbd9e3] rounded-full overflow-hidden my-2.5">
+              <div className="w-full h-full bg-[#008a4b] rounded-full" />
             </div>
-            <div className="font-mono text-[10.5px] text-[#64748b]">
+            <div className="font-mono text-[10.5px] text-[#5c6f7e]">
               Latency: 4.2 sec (Real-Time)
             </div>
           </div>
 
           {/* Regulatory Reporting Mart */}
-          <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
+          <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0d1c2f]">
+              <span className="text-xs font-bold text-[#00263e]">
                 Regulatory Reporting Mart
               </span>
-              <span className="font-mono text-[10.5px] font-bold text-[#4b41e1]">
+              <span className="font-mono text-[10.5px] font-bold text-[#0076b6]">
                 Staging
               </span>
             </div>
-            <div className="font-mono text-[11px] text-[#64748b] mt-0.5">
+            <div className="font-mono text-[11px] text-[#5c6f7e] mt-0.5">
               MAS610 / FRTB Engines
             </div>
-            <div className="w-full h-1.5 bg-[#cbd5e1] rounded-full overflow-hidden my-2.5">
-              <div className="w-[62%] h-full bg-[#4b41e1] rounded-full" />
+            <div className="w-full h-1.5 bg-[#cbd9e3] rounded-full overflow-hidden my-2.5">
+              <div className="w-[62%] h-full bg-[#00AEEF] rounded-full" />
             </div>
-            <div className="font-mono text-[10.5px] text-[#64748b]">
+            <div className="font-mono text-[10.5px] text-[#5c6f7e]">
               Pending {pendingQueueCount} dual-sign checks
             </div>
           </div>
@@ -824,71 +825,73 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       </div>
 
       {/* AUDITOR READINESS */}
-      <div className="bg-white border border-[#e2e8f0] rounded p-4">
+      <div className="bg-white border border-[#cbd9e3] rounded-xs p-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#64748b]">
+          <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
             AUDITOR READINESS
           </span>
-          <span className="bg-[#00462f] text-[#85f8c4] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+          <span className="bg-[#00395d] text-[#00AEEF] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
             99.8%
           </span>
         </div>
 
         <div className="flex items-center gap-3.5 mb-4">
-          <div className="w-12 h-12 rounded-full border-4 border-[#10b981] bg-[#eff4ff] flex items-center justify-center shrink-0">
-            <span className="font-mono text-xs font-bold text-[#0d1c2f]">
+          <div className="w-12 h-12 rounded-full border-4 border-[#008a4b] bg-[#f2f8fc] flex items-center justify-center shrink-0">
+            <span className="font-mono text-xs font-bold text-[#00263e]">
               99%
             </span>
           </div>
           <div>
-            <div className="text-sm font-bold text-[#0d1c2f]">
+            <div className="text-sm font-bold text-[#00263e]">
               Audit Compliance
             </div>
-            <div className="text-xs text-[#64748b] mt-0.5">
+            <div className="text-xs text-[#5c6f7e] mt-0.5">
               Zero unapproved delta exceptions across 42 active tables.
             </div>
           </div>
         </div>
 
-        <div className="bg-[#eff4ff]/80 rounded p-3 space-y-1.5 font-mono text-[11px]">
+        <div className="bg-[#f2f8fc] border border-[#d4dfe6] rounded-xs p-3 space-y-1.5 font-mono text-[11px]">
           <div className="flex items-center justify-between">
-            <span className="text-[#43474e]">Dual-Sign Enforcement</span>
-            <span className="font-bold text-[#0d1c2f]">STRICT</span>
+            <span className="text-[#33414c]">Dual-Sign Enforcement</span>
+            <span className="font-bold text-[#00263e]">STRICT</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[#43474e]">Cryptographic Hashing</span>
-            <span className="font-bold text-[#00462f]">ENABLED (SHA256)</span>
+            <span className="text-[#33414c]">Cryptographic Hashing</span>
+            <span className="font-bold text-[#008a4b]">ENABLED (SHA256)</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[#43474e]">Unapproved Outliers</span>
-            <span className="font-bold text-[#0d1c2f]">0 Records</span>
+            <span className="text-[#33414c]">Unapproved Outliers</span>
+            <span className="font-bold text-[#00263e]">0 Records</span>
           </div>
         </div>
       </div>
 
       {/* GOVERNANCE ACTIVITY */}
-      <div className="bg-white border border-[#e2e8f0] rounded p-4">
+      <div className="bg-white border border-[#cbd9e3] rounded-xs p-4">
         <div className="flex items-center justify-between mb-3.5">
-          <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#64748b]">
+          <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
             GOVERNANCE ACTIVITY
           </span>
-          <span className="font-mono text-[11px] text-[#4b41e1]">Live Feed</span>
+          <span className="font-mono text-[11px] font-semibold text-[#0076b6]">
+            Live Feed
+          </span>
         </div>
 
-        <div className="space-y-4 relative before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-px before:bg-[#d5e3fd]">
+        <div className="space-y-4 relative before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-px before:bg-[#b8e1f5]">
           {statutoryLogs.slice(0, 3).map((item) => (
             <div key={item.id} className="flex items-start gap-3 relative">
-              <div className="w-5 h-5 rounded-full bg-[#eff4ff] border border-[#d5e3fd] flex items-center justify-center shrink-0 mt-0.5 z-10">
-                <CheckCircle2 className="w-3 h-3 text-[#01284b]" />
+              <div className="w-5 h-5 rounded-full bg-[#e5f4fb] border border-[#00AEEF] flex items-center justify-center shrink-0 mt-0.5 z-10">
+                <CheckCircle2 className="w-3 h-3 text-[#0076b6]" />
               </div>
               <div>
-                <div className="text-xs font-bold text-[#0d1c2f]">
+                <div className="text-xs font-bold text-[#00263e]">
                   {item.title}
                 </div>
-                <div className="text-xs text-[#43474e] mt-0.5">
+                <div className="text-xs text-[#33414c] mt-0.5">
                   {item.description}
                 </div>
-                <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                   {item.relativeTime} • Commit {item.commitHash}
                 </div>
               </div>
@@ -896,11 +899,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
           ))}
         </div>
 
-        <div className="mt-4 pt-3 border-t border-[#f1f5f9] text-center">
+        <div className="mt-4 pt-3 border-t border-[#edf2f6] text-center">
           <button
             type="button"
             onClick={onGoToAuditLogs}
-            className="text-xs font-bold text-[#4b41e1] hover:underline"
+            className="text-xs font-bold text-[#0076b6] hover:text-[#00AEEF] hover:underline"
           >
             View All Statutory Logs
           </button>
@@ -908,24 +911,24 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
       </div>
 
       {/* MAINTENANCE & FREEZES */}
-      <div className="bg-[#fff5f5] border border-[#ffdad6] border-l-4 border-l-[#ba1a1a] rounded p-4">
-        <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#ba1a1a]">
+      <div className="bg-[#fde8eb]/60 border border-[#f8b4be] border-l-4 border-l-[#C8102E] rounded-xs p-4">
+        <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#C8102E]">
           <AlertTriangle className="w-3.5 h-3.5" />
           <span>MAINTENANCE &amp; FREEZES</span>
         </div>
-        <p className="text-xs text-[#0d1c2f] mt-1.5">
+        <p className="text-xs text-[#00263e] mt-1.5">
           <span className="font-bold">GL_ACCT_TREE</span> scheduled for bi-annual
           statutory ledger lock on{' '}
           <span className="font-bold">Nov 30, 23:59 UTC</span>.
         </p>
         <div className="flex items-center justify-between mt-3">
-          <span className="font-mono text-[10.5px] text-[#64748b]">
+          <span className="font-mono text-[10.5px] text-[#5c6f7e]">
             T-minus 4 days
           </span>
           <button
             type="button"
             onClick={() => setFreezeImpactModalOpen(true)}
-            className="bg-white hover:bg-[#ffdad6]/40 border border-[#ffdad6] text-[#93000a] text-[11px] font-bold px-3 py-1 rounded transition-colors"
+            className="bg-white hover:bg-[#fde8eb] border border-[#f8b4be] text-[#9e0b22] text-[11px] font-bold px-3 py-1 rounded-xs transition-colors"
           >
             Review Impact
           </button>
@@ -934,19 +937,19 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
 
       {/* DDL / Schema Modal */}
       {schemaModalDataset && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-2xl w-full overflow-hidden">
-            <div className="bg-[#01284b] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-2xl w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Braces className="w-4 h-4 text-[#85f8c4]" />
+                <Braces className="w-4 h-4 text-[#00AEEF]" />
                 <span className="text-xs font-bold">
-                  Partition DDL &amp; Arrow IPC Schema — {schemaModalDataset.code}
+                  Barclays Partition DDL &amp; Arrow IPC Schema — {schemaModalDataset.code}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setSchemaModalDataset(null)}
-                className="text-[#aac9f4] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -954,10 +957,10 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
             <div className="p-4 space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <div>
-                  <span className="font-bold text-[#0d1c2f]">
+                  <span className="font-bold text-[#00263e]">
                     {schemaModalDataset.name}
                   </span>{' '}
-                  <span className="font-mono text-[#64748b]">
+                  <span className="font-mono text-[#5c6f7e]">
                     ({schemaModalDataset.version})
                   </span>
                 </div>
@@ -968,11 +971,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                     setCopiedDdl(true);
                     setTimeout(() => setCopiedDdl(false), 2000);
                   }}
-                  className="bg-[#eff4ff] hover:bg-[#d5e3fd] text-[#01284b] text-[11px] font-semibold px-2.5 py-1 rounded flex items-center gap-1"
+                  className="bg-[#e5f4fb] hover:bg-[#cbe9f7] text-[#00395d] text-[11px] font-semibold px-2.5 py-1 rounded-xs flex items-center gap-1"
                 >
                   {copiedDdl ? (
                     <>
-                      <Check className="w-3 h-3 text-[#059669]" />
+                      <Check className="w-3 h-3 text-[#008a4b]" />
                       <span>Copied DDL</span>
                     </>
                   ) : (
@@ -983,11 +986,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                   )}
                 </button>
               </div>
-              <pre className="bg-[#0d1c2f] text-[#e6eeff] font-mono text-xs p-3.5 rounded overflow-x-auto leading-relaxed">
+              <pre className="bg-[#001b2e] text-[#e5f4fb] font-mono text-xs p-3.5 rounded-xs overflow-x-auto leading-relaxed border-l-2 border-l-[#00AEEF]">
                 {schemaModalDataset.ddlSchema}
               </pre>
               <div className="flex items-center justify-between pt-2">
-                <span className="font-mono text-[11px] text-[#64748b]">
+                <span className="font-mono text-[11px] text-[#5c6f7e]">
                   Partition Format: Apache Arrow IPC • Checksum: ECDSA-256
                 </span>
                 <button
@@ -997,7 +1000,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                     setSchemaModalDataset(null);
                     onOpenEditor(id);
                   }}
-                  className="bg-[#01284b] text-white text-xs font-semibold px-3.5 py-1.5 rounded"
+                  className="bg-[#00395d] hover:bg-[#00263e] text-white text-xs font-semibold px-3.5 py-1.5 rounded-xs"
                 >
                   Open in Data Editor
                 </button>
@@ -1009,11 +1012,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
 
       {/* Commit History Modal */}
       {historyModalDataset && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-xl w-full overflow-hidden">
-            <div className="bg-[#01284b] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-xl w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <History className="w-4 h-4 text-[#85f8c4]" />
+                <History className="w-4 h-4 text-[#00AEEF]" />
                 <span className="text-xs font-bold">
                   Attested Version Lineage — {historyModalDataset.code}
                 </span>
@@ -1021,7 +1024,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               <button
                 type="button"
                 onClick={() => setHistoryModalDataset(null)}
-                className="text-[#aac9f4] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1030,20 +1033,20 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               {historyModalDataset.recentCommits.map((c) => (
                 <div
                   key={c.hash}
-                  className="border border-[#e2e8f0] rounded p-3 bg-[#f8fafc]"
+                  className="border border-[#cbd9e3] rounded-xs p-3 bg-[#f4f9fc]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-[#01284b]">
+                    <span className="font-mono text-xs font-bold text-[#00395d]">
                       {c.version} • Commit {c.hash}
                     </span>
-                    <span className="font-mono text-[10.5px] text-[#64748b]">
+                    <span className="font-mono text-[10.5px] text-[#5c6f7e]">
                       {c.timestamp}
                     </span>
                   </div>
-                  <p className="text-xs text-[#0d1c2f] mt-1 font-medium">
+                  <p className="text-xs text-[#00263e] mt-1 font-medium">
                     {c.summary}
                   </p>
-                  <div className="font-mono text-[10.5px] text-[#64748b] mt-1.5">
+                  <div className="font-mono text-[10.5px] text-[#5c6f7e] mt-1.5">
                     Maker: {c.author} • Attested by Checker: {c.checker}
                   </div>
                 </div>
@@ -1052,7 +1055,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setHistoryModalDataset(null)}
-                  className="bg-[#eff4ff] text-[#01284b] text-xs font-semibold px-3.5 py-1.5 rounded"
+                  className="bg-[#e5f4fb] text-[#00395d] text-xs font-semibold px-3.5 py-1.5 rounded-xs"
                 >
                   Close
                 </button>
@@ -1064,23 +1067,23 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
 
       {/* New Dataset Definition Modal */}
       {newDatasetModalOpen && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-lg w-full overflow-hidden">
-            <div className="bg-[#01284b] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-lg w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <span className="text-xs font-bold">
                 Register New Reference Dataset Definition
               </span>
               <button
                 type="button"
                 onClick={() => setNewDatasetModalOpen(false)}
-                className="text-[#aac9f4] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
             <form onSubmit={handleCreateDatasetSubmit} className="p-4 space-y-3">
               <div>
-                <label className="block text-xs font-bold text-[#0d1c2f] mb-1">
+                <label className="block text-xs font-bold text-[#00263e] mb-1">
                   Dataset Display Name *
                 </label>
                 <input
@@ -1089,11 +1092,11 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                   value={newDsName}
                   onChange={(e) => setNewDsName(e.target.value)}
                   placeholder="e.g., MiFID II Instrument Classification Taxonomy"
-                  className="w-full border border-[#cbd5e1] rounded px-3 py-1.5 text-xs focus:outline-none focus:border-[#01284b]"
+                  className="w-full border border-[#cbd9e3] rounded-xs px-3 py-1.5 text-xs focus:outline-none focus:border-[#00AEEF]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#0d1c2f] mb-1">
+                <label className="block text-xs font-bold text-[#00263e] mb-1">
                   Canonical Partition Code (Monospace ID) *
                 </label>
                 <input
@@ -1102,12 +1105,12 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                   value={newDsCode}
                   onChange={(e) => setNewDsCode(e.target.value)}
                   placeholder="e.g., MIFID_CFI_TAXONOMY"
-                  className="w-full border border-[#cbd5e1] rounded px-3 py-1.5 text-xs font-mono uppercase focus:outline-none focus:border-[#01284b]"
+                  className="w-full border border-[#cbd9e3] rounded-xs px-3 py-1.5 text-xs font-mono uppercase focus:outline-none focus:border-[#00AEEF]"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#0d1c2f] mb-1">
+                  <label className="block text-xs font-bold text-[#00263e] mb-1">
                     Governance Domain
                   </label>
                   <select
@@ -1117,7 +1120,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                         e.target.value as 'Regulatory' | 'Financial' | 'Accounting'
                       )
                     }
-                    className="w-full border border-[#cbd5e1] rounded px-2.5 py-1.5 text-xs"
+                    className="w-full border border-[#cbd9e3] rounded-xs px-2.5 py-1.5 text-xs"
                   >
                     <option value="Regulatory">Regulatory</option>
                     <option value="Financial">Financial</option>
@@ -1125,7 +1128,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-[#0d1c2f] mb-1">
+                  <label className="block text-xs font-bold text-[#00263e] mb-1">
                     Partition Category
                   </label>
                   <select
@@ -1139,7 +1142,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                           | 'Customer & Entity'
                       )
                     }
-                    className="w-full border border-[#cbd5e1] rounded px-2.5 py-1.5 text-xs"
+                    className="w-full border border-[#cbd9e3] rounded-xs px-2.5 py-1.5 text-xs"
                   >
                     <option value="Risk & Compliance">Risk &amp; Compliance</option>
                     <option value="Market & Trading">Market &amp; Trading</option>
@@ -1152,13 +1155,13 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setNewDatasetModalOpen(false)}
-                  className="px-3 py-1.5 rounded border border-[#cbd5e1] text-xs font-semibold text-[#43474e]"
+                  className="px-3 py-1.5 rounded-xs border border-[#cbd9e3] text-xs font-semibold text-[#33414c]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded bg-[#01284b] text-white text-xs font-semibold"
+                  className="px-4 py-1.5 rounded-xs bg-[#00395d] hover:bg-[#00263e] text-white text-xs font-semibold"
                 >
                   Bind Partition &amp; Register
                 </button>
@@ -1170,31 +1173,31 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
 
       {/* Import CSV / JSON Modal */}
       {importModalOpen && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-md w-full overflow-hidden">
-            <div className="bg-[#01284b] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-md w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <span className="text-xs font-bold">
                 Import Reference Payload (CSV / JSON / Parquet)
               </span>
               <button
                 type="button"
                 onClick={() => setImportModalOpen(false)}
-                className="text-[#aac9f4] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
             <div className="p-4 space-y-3">
-              <p className="text-xs text-[#43474e]">
+              <p className="text-xs text-[#33414c]">
                 All imported batches are routed through the deterministic staging gate
                 and require Tier-2 Checker sign-off before production commit.
               </p>
-              <div className="border-2 border-dashed border-[#cbd5e1] bg-[#eff4ff]/50 rounded p-5 text-center">
-                <Upload className="w-6 h-6 text-[#01284b] mx-auto mb-1.5" />
-                <div className="text-xs font-bold text-[#0d1c2f]">
+              <div className="border-2 border-dashed border-[#00AEEF]/60 bg-[#f2f8fc] rounded-xs p-5 text-center">
+                <Upload className="w-6 h-6 text-[#0076b6] mx-auto mb-1.5" />
+                <div className="text-xs font-bold text-[#00263e]">
                   ISO_4217_Q4_DELTA_BATCH.json
                 </div>
-                <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                   Pre-validated against CURR_REF_V2 schema • 0 schema violations
                 </div>
               </div>
@@ -1202,7 +1205,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setImportModalOpen(false)}
-                  className="px-3 py-1.5 rounded border border-[#cbd5e1] text-xs font-semibold text-[#43474e]"
+                  className="px-3 py-1.5 rounded-xs border border-[#cbd9e3] text-xs font-semibold text-[#33414c]"
                 >
                   Cancel
                 </button>
@@ -1215,7 +1218,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                       'success'
                     );
                   }}
-                  className="px-4 py-1.5 rounded bg-[#01284b] text-white text-xs font-semibold"
+                  className="px-4 py-1.5 rounded-xs bg-[#00395d] text-white text-xs font-semibold"
                 >
                   Stage Payload for Sign-Off
                 </button>
@@ -1227,9 +1230,9 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
 
       {/* Statutory Freeze Impact Modal */}
       {freezeImpactModalOpen && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-lg w-full overflow-hidden">
-            <div className="bg-[#93000a] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#C8102E] rounded-xs shadow-xl max-w-lg w-full overflow-hidden">
+            <div className="bg-[#C8102E] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4" />
                 <span className="text-xs font-bold">
@@ -1245,17 +1248,17 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
               </button>
             </div>
             <div className="p-4 space-y-3 text-xs">
-              <div className="bg-[#fff5f5] border border-[#ffdad6] rounded p-3">
-                <div className="font-bold text-[#93000a]">
+              <div className="bg-[#fde8eb] border border-[#f8b4be] rounded-xs p-3">
+                <div className="font-bold text-[#9e0b22]">
                   Lock Effective: Nov 30, 23:59 UTC — Dec 03, 06:00 UTC
                 </div>
-                <div className="text-[#43474e] mt-1">
+                <div className="text-[#33414c] mt-1">
                   During the bi-annual statutory close, DDL schema mutations and node
                   relocations on <span className="font-mono font-bold">GL_ACCT_TREE</span>{' '}
                   require emergency CFO + Chief Risk Officer dual override tokens.
                 </div>
               </div>
-              <div className="font-mono text-[11px] space-y-1 bg-[#f8fafc] p-3 rounded border border-[#e2e8f0]">
+              <div className="font-mono text-[11px] space-y-1 bg-[#f4f9fc] p-3 rounded-xs border border-[#cbd9e3]">
                 <div>• In-Flight Change Request: CR-2024-8889 (1 Pending Sign-Off)</div>
                 <div>• Downstream Consumers: SAP S/4HANA Ledger, FRTB Mart</div>
                 <div>• Recommendation: Complete Checker attestation prior to Nov 30.</div>
@@ -1264,7 +1267,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setFreezeImpactModalOpen(false)}
-                  className="px-3 py-1.5 rounded border border-[#cbd5e1] font-semibold text-[#43474e]"
+                  className="px-3 py-1.5 rounded-xs border border-[#cbd9e3] font-semibold text-[#33414c]"
                 >
                   Dismiss
                 </button>
@@ -1274,7 +1277,7 @@ export const DatasetCatalogView: React.FC<DatasetCatalogViewProps> = ({
                     setFreezeImpactModalOpen(false);
                     onReviewStaging('CR-2024-8889');
                   }}
-                  className="px-3.5 py-1.5 rounded bg-[#01284b] text-white font-semibold"
+                  className="px-3.5 py-1.5 rounded-xs bg-[#00395d] text-white font-semibold"
                 >
                   Review CR-2024-8889 Now
                 </button>

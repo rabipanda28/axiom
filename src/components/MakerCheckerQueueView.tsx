@@ -125,7 +125,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
   const handleDownloadSig = () => {
     if (!selectedCr) return;
     const sigContent = [
-      '-----BEGIN AXIOM RDM DETERMINISTIC AUDIT SIGNATURE-----',
+      '-----BEGIN BARCLAYS AXIOM RDM DETERMINISTIC AUDIT SIGNATURE-----',
       `CHANGE_REQUEST_ID: ${selectedCr.id}`,
       `TARGET_PARTITION: ${selectedCr.targetCode}`,
       `SCHEMA_TRANSITION: ${selectedCr.schemaFrom} -> ${selectedCr.schemaTo}`,
@@ -133,7 +133,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
       `STAGING_COMMIT_UTC: ${selectedCr.stagingCommitTimestamp}`,
       `SHA256_PAYLOAD_DIGEST: ${selectedCr.sha256Full}`,
       `HSM_SIGNER: HSM-FIPS-140-L3-US-EAST`,
-      '-----END AXIOM RDM DETERMINISTIC AUDIT SIGNATURE-----',
+      '-----END BARCLAYS AXIOM RDM DETERMINISTIC AUDIT SIGNATURE-----',
     ].join('\n');
 
     const blob = new Blob([sigContent], { type: 'text/plain' });
@@ -158,7 +158,6 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
       );
       return;
     }
-    // Check Segregation of Duties (SoD) if current principal authored this CR
     if (selectedCr.makerUid === currentRole.principalUid) {
       setSodGateModalOpen(true);
       return;
@@ -177,25 +176,25 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
 
   return (
     <div className="flex flex-col min-h-full">
-      {/* Top Dark Segregation of Duties (SoD) Banner */}
-      <div className="bg-[#07192f] text-white px-5 py-3 flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[#163252]">
+      {/* Top Dark Barclays Segregation of Duties (SoD) Banner */}
+      <div className="bg-[#001b2e] text-white px-5 py-3 flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[#004d7a]">
         <div className="flex items-start sm:items-center gap-3">
-          <div className="w-8 h-8 rounded bg-[#102a49] border border-[#1e4976] flex items-center justify-center shrink-0">
-            <Shield className="w-4 h-4 text-[#8ba9d3]" />
+          <div className="w-8 h-8 rounded-xs bg-[#00395d] border border-[#00AEEF]/60 flex items-center justify-center shrink-0">
+            <Shield className="w-4 h-4 text-[#00AEEF]" />
           </div>
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <span className="text-[13.5px] font-bold text-white tracking-tight">
                 Enforcing Segregation of Duties (SoD)
               </span>
-              <span className="bg-[#68dba9] text-[#002114] font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+              <span className="bg-[#00AEEF] text-[#001b2e] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs uppercase tracking-wider">
                 DUAL-CONTROL TIER 2
               </span>
             </div>
-            <p className="text-xs text-[#aac9f4] mt-0.5">
+            <p className="text-xs text-[#b3d4e8] mt-0.5">
               As a designated Checker, you cannot approve or sign mutations
               authored by your own authenticated principal ID (
-              <span className="font-mono text-white underline decoration-[#8ba9d3]/60">
+              <span className="font-mono text-white underline decoration-[#00AEEF]">
                 {currentRole.principalName} / {currentRole.principalUid}
               </span>
               ).
@@ -205,19 +204,19 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
 
         <div className="flex items-center gap-3 shrink-0 self-end lg:self-center">
           <div className="text-right">
-            <div className="font-mono text-[9.5px] uppercase tracking-wider text-[#8ba9d3]">
+            <div className="font-mono text-[9.5px] uppercase tracking-wider text-[#8ab8d6]">
               HARDWARE TOKEN SIGNER
             </div>
-            <div className="font-mono text-[11px] font-bold text-[#68dba9]">
+            <div className="font-mono text-[11px] font-bold text-[#00AEEF]">
               HSM-FIPS-140-L3 [ONLINE]
             </div>
           </div>
           <button
             type="button"
             onClick={() => setReAuthModalOpen(true)}
-            className="bg-[#163252] hover:bg-[#1e3e62] border border-[#29486d] text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="bg-[#00395d] hover:bg-[#004d7a] border border-[#00AEEF]/60 text-white text-xs font-semibold px-3 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors whitespace-nowrap"
           >
-            <KeyRound className="w-3.5 h-3.5 text-[#8ba9d3]" />
+            <KeyRound className="w-3.5 h-3.5 text-[#00AEEF]" />
             <span>Re-Auth Token</span>
           </button>
         </div>
@@ -229,17 +228,17 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
           <div className="max-w-xl">
             <div className="flex items-center gap-2">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-[#43474e]">
+              <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-[#5c6f7e]">
                 STATUTORY DUAL-SIGN OFF ENGINE
               </span>
-              <span className="bg-[#d5e3fd] text-[#01284b] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+              <span className="bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
                 ISO-20022 COMPLIANT
               </span>
             </div>
-            <h1 className="text-[23px] font-bold text-[#0d1c2f] tracking-tight mt-1">
+            <h1 className="text-[23px] font-bold text-[#00263e] tracking-tight mt-1">
               Maker-Checker Governance Queue
             </h1>
-            <p className="text-xs text-[#43474e] mt-1 leading-relaxed">
+            <p className="text-xs text-[#33414c] mt-1 leading-relaxed">
               Multi-party statutory sign-off gate for live market feeds, ledger
               taxonomies, and reference partition schemas. Changes are
               non-repudiable once cryptographically attested by a checker.
@@ -249,16 +248,16 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
           {/* 4 Compact Stat Boxes */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 shrink-0">
             {/* Box 1 */}
-            <div className="bg-white border border-[#e2e8f0] rounded p-3 min-w-[118px]">
-              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b] leading-tight">
+            <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs p-3 min-w-[118px]">
+              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-tight">
                 PENDING
                 <br />
                 SLA &lt; 2H
               </div>
-              <div className="text-2xl font-bold text-[#0d1c2f] mt-1 tabular-nums">
+              <div className="text-2xl font-bold text-[#00263e] mt-1 tabular-nums">
                 {pendingItems.length}
               </div>
-              <div className="font-mono text-[10px] text-[#ba1a1a] mt-1 flex items-center gap-1 leading-tight">
+              <div className="font-mono text-[10px] text-[#C8102E] mt-1 flex items-center gap-1 leading-tight">
                 <AlertTriangle className="w-3 h-3 shrink-0" />
                 <span>
                   1 High
@@ -269,16 +268,16 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             </div>
 
             {/* Box 2 */}
-            <div className="bg-white border border-[#e2e8f0] rounded p-3 min-w-[118px]">
-              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b] leading-tight">
+            <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#008a4b] rounded-xs p-3 min-w-[118px]">
+              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-tight">
                 APPROVED
                 <br />
                 TODAY
               </div>
-              <div className="text-2xl font-bold text-[#059669] mt-1 tabular-nums">
+              <div className="text-2xl font-bold text-[#008a4b] mt-1 tabular-nums">
                 {approvedCount}
               </div>
-              <div className="font-mono text-[10px] text-[#64748b] mt-1 leading-tight">
+              <div className="font-mono text-[10px] text-[#5c6f7e] mt-1 leading-tight">
                 100%
                 <br />
                 Attested
@@ -286,16 +285,16 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             </div>
 
             {/* Box 3 */}
-            <div className="bg-white border border-[#e2e8f0] rounded p-3 min-w-[118px]">
-              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b] leading-tight">
+            <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#C8102E] rounded-xs p-3 min-w-[118px]">
+              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-tight">
                 RETURNED /
                 <br />
                 REJECT
               </div>
-              <div className="text-2xl font-bold text-[#ba1a1a] mt-1 tabular-nums">
+              <div className="text-2xl font-bold text-[#C8102E] mt-1 tabular-nums">
                 {rejectedCount}
               </div>
-              <div className="font-mono text-[10px] text-[#64748b] mt-1 leading-tight">
+              <div className="font-mono text-[10px] text-[#5c6f7e] mt-1 leading-tight">
                 Maker
                 <br />
                 Remediation
@@ -303,16 +302,16 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             </div>
 
             {/* Box 4 */}
-            <div className="bg-white border border-[#e2e8f0] rounded p-3 min-w-[118px]">
-              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b] leading-tight">
+            <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#0076b6] rounded-xs p-3 min-w-[118px]">
+              <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e] leading-tight">
                 MY
                 <br />
                 ASSIGNMENTS
               </div>
-              <div className="text-2xl font-bold text-[#4b41e1] mt-1 tabular-nums">
+              <div className="text-2xl font-bold text-[#0076b6] mt-1 tabular-nums">
                 {assignedCount}
               </div>
-              <div className="font-mono text-[10px] text-[#64748b] mt-1 leading-tight">
+              <div className="font-mono text-[10px] text-[#5c6f7e] mt-1 leading-tight">
                 Eligible
                 <br />
                 Signer
@@ -322,19 +321,19 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
         </div>
 
         {/* Queue Filter & Search Bar */}
-        <div className="bg-white border border-[#e2e8f0] rounded p-2 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2">
+        <div className="bg-white border border-[#cbd9e3] rounded-xs p-2 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             <button
               type="button"
               onClick={() => setQueueFilterTab('pending')}
-              className={`px-3 py-1.5 rounded text-xs flex items-center gap-2 transition-colors whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xs text-xs flex items-center gap-2 transition-colors whitespace-nowrap ${
                 queueFilterTab === 'pending'
-                  ? 'bg-[#01284b] text-white font-semibold'
-                  : 'text-[#43474e] hover:bg-[#eff4ff] font-medium'
+                  ? 'bg-[#00395d] text-white font-semibold border-b-2 border-b-[#00AEEF]'
+                  : 'text-[#33414c] hover:bg-[#e5f4fb] font-medium'
               }`}
             >
               <span>Pending Approval</span>
-              <span className="bg-[#ba1a1a] text-white font-mono text-[10px] font-bold px-1.5 py-0.2 rounded">
+              <span className="bg-[#C8102E] text-white font-mono text-[10px] font-bold px-1.5 py-0.2 rounded-xs">
                 {pendingItems.length}
               </span>
             </button>
@@ -342,10 +341,10 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             <button
               type="button"
               onClick={() => setQueueFilterTab('approved')}
-              className={`px-3 py-1.5 rounded text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xs text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
                 queueFilterTab === 'approved'
-                  ? 'bg-[#01284b] text-white font-semibold'
-                  : 'text-[#43474e] hover:bg-[#eff4ff] font-medium'
+                  ? 'bg-[#00395d] text-white font-semibold border-b-2 border-b-[#00AEEF]'
+                  : 'text-[#33414c] hover:bg-[#e5f4fb] font-medium'
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -355,10 +354,10 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             <button
               type="button"
               onClick={() => setQueueFilterTab('rejected')}
-              className={`px-3 py-1.5 rounded text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xs text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
                 queueFilterTab === 'rejected'
-                  ? 'bg-[#01284b] text-white font-semibold'
-                  : 'text-[#43474e] hover:bg-[#eff4ff] font-medium'
+                  ? 'bg-[#00395d] text-white font-semibold border-b-2 border-b-[#00AEEF]'
+                  : 'text-[#33414c] hover:bg-[#e5f4fb] font-medium'
               }`}
             >
               <XCircle className="w-3.5 h-3.5" />
@@ -368,10 +367,10 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             <button
               type="button"
               onClick={() => setQueueFilterTab('assigned')}
-              className={`px-3 py-1.5 rounded text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xs text-xs flex items-center gap-1.5 transition-colors whitespace-nowrap ${
                 queueFilterTab === 'assigned'
-                  ? 'bg-[#01284b] text-white font-semibold'
-                  : 'text-[#43474e] hover:bg-[#eff4ff] font-medium'
+                  ? 'bg-[#00395d] text-white font-semibold border-b-2 border-b-[#00AEEF]'
+                  : 'text-[#33414c] hover:bg-[#e5f4fb] font-medium'
               }`}
             >
               <UserCheck className="w-3.5 h-3.5" />
@@ -380,14 +379,14 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <div className="flex items-center bg-[#eff4ff] border border-[#d5e3fd] rounded px-2.5 py-1 w-full md:w-56">
-              <Filter className="w-3 h-3 text-[#64748b] mr-2 shrink-0" />
+            <div className="flex items-center bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs px-2.5 py-1 w-full md:w-56 focus-within:border-[#00AEEF]">
+              <Filter className="w-3 h-3 text-[#0076b6] mr-2 shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Filter ticket, maker, entity..."
-                className="bg-transparent text-xs text-[#0d1c2f] placeholder-[#64748b] focus:outline-none w-full"
+                className="bg-transparent text-xs text-[#00263e] placeholder-[#5c6f7e] focus:outline-none w-full"
               />
             </div>
 
@@ -400,7 +399,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                 )
               }
               title="Refresh Queue"
-              className="p-1.5 rounded hover:bg-[#eff4ff] text-[#43474e] hover:text-[#01284b] transition-colors"
+              className="p-1.5 rounded-xs hover:bg-[#e5f4fb] text-[#33414c] hover:text-[#00395d] transition-colors"
             >
               <RefreshCw className="w-3.5 h-3.5" />
             </button>
@@ -413,18 +412,18 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
           <div className="w-full lg:w-[276px] shrink-0 space-y-2.5">
             <div className="flex items-center justify-between px-0.5">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-[#0d1c2f] leading-tight">
+                <span className="text-xs font-bold text-[#00263e] leading-tight">
                   Queue In-
                   <br />
                   Flight
                 </span>
-                <span className="bg-[#d5e3fd] text-[#01284b] font-mono text-[10px] font-bold px-2 py-0.5 rounded leading-tight text-center">
+                <span className="bg-[#e5f4fb] border border-[#b8e1f5] text-[#00395d] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs leading-tight text-center">
                   {filteredQueue.length}
                   <br />
                   Items
                 </span>
               </div>
-              <span className="text-[10px] text-[#64748b] text-right leading-tight">
+              <span className="text-[10px] text-[#5c6f7e] text-right leading-tight">
                 Sorted by: Urgency /
                 <br />
                 Age
@@ -432,7 +431,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             </div>
 
             {filteredQueue.length === 0 ? (
-              <div className="bg-white border border-[#e2e8f0] rounded p-6 text-center text-xs text-[#64748b]">
+              <div className="bg-white border border-[#cbd9e3] rounded-xs p-6 text-center text-xs text-[#5c6f7e]">
                 No change requests match this filter view.
               </div>
             ) : (
@@ -442,65 +441,65 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                   <div
                     key={cr.id}
                     onClick={() => onSelectCr(cr.id)}
-                    className={`bg-white rounded p-3 cursor-pointer transition-all ${
+                    className={`bg-white rounded-xs p-3 cursor-pointer transition-all ${
                       isSelected
-                        ? 'border border-[#94a3b8] border-l-4 border-l-[#01284b] shadow-xs'
-                        : 'border border-[#e2e8f0] hover:border-[#aac9f4]'
+                        ? 'border border-[#0076b6] border-l-4 border-l-[#00AEEF] shadow-xs'
+                        : 'border border-[#cbd9e3] hover:border-[#00AEEF]'
                     }`}
                   >
                     {/* Card Top Metadata Row */}
                     <div className="flex items-center justify-between gap-1">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-mono text-[11px] font-bold text-[#0d1c2f]">
+                        <span className="font-mono text-[11px] font-bold text-[#00263e]">
                           {cr.id}
                         </span>
                         {cr.priority === 'HIGH PRIORITY' && (
-                          <span className="bg-[#ffdad6] text-[#93000a] font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded uppercase">
+                          <span className="bg-[#fde8eb] text-[#9e0b22] font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded-xs uppercase">
                             HIGH PRIORITY
                           </span>
                         )}
                         {cr.priority === 'NORMAL' && (
-                          <span className="bg-[#d5e3fd] text-[#01284b] font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded uppercase">
+                          <span className="bg-[#e5f4fb] text-[#00395d] font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded-xs uppercase">
                             NORMAL
                           </span>
                         )}
                         {cr.priority === 'CRITICAL' && (
-                          <span className="bg-[#ba1a1a] text-white font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded uppercase">
+                          <span className="bg-[#C8102E] text-white font-mono text-[8.5px] font-bold px-1.5 py-0.5 rounded-xs uppercase">
                             CRITICAL
                           </span>
                         )}
                       </div>
-                      <span className="font-mono text-[10px] text-[#64748b]">
+                      <span className="font-mono text-[10px] text-[#5c6f7e]">
                         {cr.submittedAgo}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <div className="text-[12.5px] font-bold text-[#0d1c2f] mt-1.5 leading-snug">
+                    <div className="text-[12.5px] font-bold text-[#00263e] mt-1.5 leading-snug">
                       {cr.title}
                     </div>
 
                     {/* Snippet */}
-                    <p className="text-[11px] text-[#43474e] mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-[#33414c] mt-1 line-clamp-2 leading-relaxed">
                       {cr.snippet}
                     </p>
 
-                    {/* Bottom Maker & Ticket Pill Strip */}
-                    <div className="mt-2.5 bg-[#eff4ff] rounded px-2 py-1.5 flex items-center justify-between gap-1 text-[10px]">
+                    {/* Bottom Maker & Ticket Strip */}
+                    <div className="mt-2.5 bg-[#f2f8fc] border border-[#d4dfe6] rounded-xs px-2 py-1.5 flex items-center justify-between gap-1 text-[10px]">
                       <div className="flex items-center gap-1.5 min-w-0">
-                        <span className="bg-[#e2dfff] text-[#3323cc] font-bold px-1.5 py-0.5 rounded leading-tight shrink-0">
+                        <span className="bg-[#00395d] text-[#00AEEF] font-bold px-1.5 py-0.5 rounded-xs leading-tight shrink-0">
                           PS
                           <br />
                           Maker
                         </span>
-                        <span className="font-semibold text-[#0d1c2f] truncate">
+                        <span className="font-semibold text-[#00263e] truncate">
                           {cr.makerShortName}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-1.5 font-mono text-[9.5px] shrink-0">
-                        <span className="text-[#64748b]">{cr.ticketId}</span>
-                        <span className="font-bold text-[#01284b]">
+                        <span className="text-[#5c6f7e]">{cr.ticketId}</span>
+                        <span className="font-bold text-[#00395d]">
                           • {cr.recordsCount}{' '}
                           {cr.recordsCount === 1 ? 'record' : 'records'}
                         </span>
@@ -512,7 +511,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
             )}
 
             {/* Queue Footer */}
-            <div className="pt-2 border-t border-[#e2e8f0] flex items-center justify-between font-mono text-[9.5px] text-[#64748b] px-0.5">
+            <div className="pt-2 border-t border-[#cbd9e3] flex items-center justify-between font-mono text-[9.5px] text-[#5c6f7e] px-0.5">
               <span>Queue ID: MCR-US-EAST-09</span>
               <span>Auto-refresh in 42s</span>
             </div>
@@ -521,44 +520,44 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
           {/* Right Column: Active Change Request Inspector */}
           {selectedCr && (
             <div className="flex-1 min-w-0 space-y-4 w-full">
-              <div className="bg-white border border-[#e2e8f0] rounded overflow-hidden">
+              <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs overflow-hidden">
                 {/* Top Inspector Header */}
-                <div className="bg-[#f4f7fe] border-b border-[#e2e8f0] p-4">
+                <div className="bg-[#f2f8fc] border-b border-[#cbd9e3] p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="bg-[#01284b] text-white font-mono text-xs font-bold px-2.5 py-1 rounded">
+                        <span className="bg-[#00263e] text-white font-mono text-xs font-bold px-2.5 py-1 rounded-xs">
                           {selectedCr.id}
                         </span>
-                        <span className="bg-[#1e3e62] text-white font-mono text-xs font-semibold px-2.5 py-1 rounded">
+                        <span className="bg-[#00395d] border-l-2 border-l-[#00AEEF] text-white font-mono text-xs font-semibold px-2.5 py-1 rounded-xs">
                           Target: {selectedCr.targetCode}
                         </span>
                         {selectedCr.status === 'approved' && (
-                          <span className="bg-[#00462f] text-[#85f8c4] font-mono text-[10px] font-bold px-2 py-1 rounded uppercase">
+                          <span className="bg-[#008a4b] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-xs uppercase">
                             ATTESTED &amp; PUBLISHED
                           </span>
                         )}
                         {selectedCr.status === 'rejected' && (
-                          <span className="bg-[#ba1a1a] text-white font-mono text-[10px] font-bold px-2 py-1 rounded uppercase">
+                          <span className="bg-[#C8102E] text-white font-mono text-[10px] font-bold px-2 py-1 rounded-xs uppercase">
                             REJECTED
                           </span>
                         )}
                         {selectedCr.status === 'revision_requested' && (
-                          <span className="bg-[#ffdad6] text-[#93000a] font-mono text-[10px] font-bold px-2 py-1 rounded uppercase">
+                          <span className="bg-[#fde8eb] text-[#9e0b22] font-mono text-[10px] font-bold px-2 py-1 rounded-xs uppercase">
                             REVISION REQUESTED
                           </span>
                         )}
                       </div>
-                      <div className="font-mono text-[11px] text-[#64748b] mt-1.5">
+                      <div className="font-mono text-[11px] text-[#5c6f7e] mt-1.5">
                         Schema Transition: {selectedCr.schemaFrom} →{' '}
-                        <span className="font-bold text-[#0d1c2f]">
+                        <span className="font-bold text-[#00263e]">
                           {selectedCr.schemaTo}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#00462f] font-medium">
-                      <CheckSquare className="w-4 h-4 text-[#00462f] shrink-0" />
+                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#006837] font-medium">
+                      <CheckSquare className="w-4 h-4 text-[#008a4b] shrink-0" />
                       <span className="leading-tight">
                         Pre-Flight Integrity
                         <br />
@@ -568,66 +567,66 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                   </div>
 
                   {/* 3-Column Submitter & Ticket Metadata */}
-                  <div className="mt-4 pt-3 border-t border-[#e2e8f0] grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="mt-4 pt-3 border-t border-[#d4dfe6] grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
-                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                         TICKET REFERENCE
                       </div>
-                      <div className="font-mono text-xs font-bold text-[#01284b] mt-0.5 flex items-center gap-1">
+                      <div className="font-mono text-xs font-bold text-[#0076b6] mt-0.5 flex items-center gap-1">
                         <ExternalLink className="w-3 h-3" />
                         <span>Jira: {selectedCr.ticketId}</span>
                       </div>
                     </div>
 
                     <div>
-                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                         PRINCIPAL SUBMITTER
                       </div>
                       <div className="text-xs mt-0.5">
-                        <span className="font-bold text-[#0d1c2f]">
+                        <span className="font-bold text-[#00263e]">
                           {selectedCr.makerName}
                         </span>{' '}
-                        <span className="font-mono text-[11px] text-[#64748b]">
+                        <span className="font-mono text-[11px] text-[#5c6f7e]">
                           ({selectedCr.makerTitle})
                         </span>
                       </div>
                     </div>
 
                     <div>
-                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                         SUBMISSION TIMESTAMP
                       </div>
-                      <div className="font-mono text-xs text-[#43474e] mt-0.5">
+                      <div className="font-mono text-xs text-[#33414c] mt-0.5">
                         {selectedCr.submissionTimestamp}
                       </div>
                     </div>
                   </div>
 
                   {/* Business Justification Box */}
-                  <div className="mt-3.5 bg-[#eff4ff] border border-[#d5e3fd] rounded p-3">
-                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                  <div className="mt-3.5 bg-white border border-[#cbd9e3] border-l-2 border-l-[#00AEEF] rounded-xs p-3">
+                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                       BUSINESS JUSTIFICATION &amp; STATUTORY INTENT
                     </div>
-                    <p className="text-xs italic text-[#0d1c2f] mt-1 leading-relaxed">
+                    <p className="text-xs italic text-[#00263e] mt-1 leading-relaxed">
                       {selectedCr.businessJustification}
                     </p>
                   </div>
                 </div>
 
                 {/* Staged Cell Changes Header */}
-                <div className="px-4 py-3 border-b border-[#e2e8f0]">
+                <div className="px-4 py-3 border-b border-[#cbd9e3]">
                   <div className="flex items-center gap-2.5 flex-wrap">
-                    <h2 className="text-sm font-bold text-[#0d1c2f]">
+                    <h2 className="text-sm font-bold text-[#00263e]">
                       Staged Cell Changes
                     </h2>
-                    <span className="bg-[#ffdad6] text-[#93000a] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+                    <span className="bg-[#fde8eb] border border-[#f8b4be] text-[#9e0b22] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
                       - Removed / Live
                     </span>
-                    <span className="bg-[#85f8c4] text-[#002114] font-mono text-[10px] font-bold px-2 py-0.5 rounded">
+                    <span className="bg-[#e6f5ee] border border-[#8ce0b8] text-[#006837] font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs">
                       + Staged Addition
                     </span>
                   </div>
-                  <div className="font-mono text-[11px] text-[#64748b] mt-1">
+                  <div className="font-mono text-[11px] text-[#5c6f7e] mt-1">
                     View Mode: Side-by-Side • {selectedCr.mutationsCount}{' '}
                     mutations detected across 2 records
                   </div>
@@ -637,7 +636,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-[#eff4ff]/70 border-b border-[#e2e8f0] text-[10px] font-bold uppercase tracking-wider text-[#0d1c2f]">
+                      <tr className="bg-[#edf5fa] border-b border-[#cbd9e3] text-[10px] font-bold uppercase tracking-wider text-[#00395d]">
                         <th className="py-2.5 px-3.5 w-[18%]">RECORD KEY</th>
                         <th className="py-2.5 px-3 w-[16%]">
                           FIELD /
@@ -661,7 +660,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#e2e8f0]">
+                    <tbody className="divide-y divide-[#d4dfe6]">
                       {selectedCr.diffs.map((diff) => (
                         <tr key={diff.id} className="align-top">
                           {/* RECORD KEY */}
@@ -670,25 +669,25 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                               <span
                                 className={`font-mono text-xs font-bold ${
                                   diff.isNewEntity
-                                    ? 'text-[#005137]'
-                                    : 'text-[#0d1c2f]'
+                                    ? 'text-[#006837]'
+                                    : 'text-[#00263e]'
                                 }`}
                               >
                                 {diff.recordKey}
                               </span>
                               {diff.isNewEntity && (
-                                <span className="bg-[#00462f] text-white font-mono text-[9px] font-bold px-1.5 py-0.2 rounded">
+                                <span className="bg-[#006837] text-white font-mono text-[9px] font-bold px-1.5 py-0.2 rounded-xs">
                                   NEW
                                 </span>
                               )}
                             </div>
-                            <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                            <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                               {diff.recordSubKey}
                             </div>
                           </td>
 
                           {/* FIELD / ATTRIBUTE */}
-                          <td className="p-3 bg-white text-xs font-medium text-[#0d1c2f]">
+                          <td className="p-3 bg-white text-xs font-medium text-[#00263e]">
                             {diff.fieldAttribute}
                           </td>
 
@@ -696,8 +695,8 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                           <td
                             className={`p-3 font-mono text-xs ${
                               diff.currentLiveValue === null
-                                ? 'bg-[#f8fafc] text-[#64748b] italic text-[11px]'
-                                : 'bg-[#fff5f5] text-[#ba1a1a]'
+                                ? 'bg-[#f4f7f9] text-[#5c6f7e] italic text-[11px]'
+                                : 'bg-[#fde8eb]/70 text-[#C8102E]'
                             }`}
                           >
                             {diff.currentLiveValue === null ? (
@@ -719,20 +718,20 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                           </td>
 
                           {/* PROPOSED STAGED VALUE */}
-                          <td className="p-3 bg-[#e6faee] font-mono text-[11.5px] font-bold text-[#005137] space-y-0.5">
+                          <td className="p-3 bg-[#e6f5ee] font-mono text-[11.5px] font-bold text-[#006837] space-y-0.5">
                             {diff.proposedStagedLines.map((line, i) => (
                               <div key={i}>{line}</div>
                             ))}
                           </td>
 
                           {/* REGULATORY / DOWNSTREAM IMPACT */}
-                          <td className="p-3.5 bg-white text-[11px] text-[#43474e] leading-snug">
+                          <td className="p-3.5 bg-white text-[11px] text-[#33414c] leading-snug">
                             {diff.impactTitle && (
                               <div
                                 className={`font-bold flex items-center gap-1 mb-0.5 ${
                                   diff.impactAccentColor === 'indigo'
-                                    ? 'text-[#4b41e1]'
-                                    : 'text-[#0d1c2f]'
+                                    ? 'text-[#0076b6]'
+                                    : 'text-[#00263e]'
                                 }`}
                               >
                                 {diff.impactIcon === 'shield' && (
@@ -756,19 +755,19 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                 </div>
 
                 {/* DETERMINISTIC CRYPTOGRAPHIC HASH Bar */}
-                <div className="bg-[#eff4ff] border-y border-[#d5e3fd] px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="bg-[#f2f8fc] border-y border-[#cbd9e3] px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded bg-white border border-[#d5e3fd] flex items-center justify-center shrink-0">
-                      <KeyRound className="w-4 h-4 text-[#01284b]" />
+                    <div className="w-8 h-8 rounded-xs bg-white border border-[#cbd9e3] flex items-center justify-center shrink-0">
+                      <KeyRound className="w-4 h-4 text-[#0076b6]" />
                     </div>
                     <div>
-                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                      <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                         DETERMINISTIC CRYPTOGRAPHIC HASH
                       </div>
-                      <div className="font-mono text-xs font-bold text-[#0d1c2f]">
+                      <div className="font-mono text-xs font-bold text-[#00263e]">
                         SHA256: {selectedCr.sha256Short}
                       </div>
-                      <div className="font-mono text-[10px] text-[#64748b]">
+                      <div className="font-mono text-[10px] text-[#5c6f7e]">
                         Generated automatically at Staging Commit (
                         {selectedCr.stagingCommitTimestamp})
                       </div>
@@ -778,9 +777,9 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                   <button
                     type="button"
                     onClick={handleDownloadSig}
-                    className="bg-white hover:bg-[#f8fafc] border border-[#cbd5e1] text-[#0d1c2f] text-xs font-bold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors shrink-0 self-start sm:self-center"
+                    className="bg-white hover:bg-[#e5f4fb] border border-[#cbd9e3] text-[#00263e] text-xs font-bold px-3 py-1.5 rounded-xs flex items-center gap-1.5 transition-colors shrink-0 self-start sm:self-center"
                   >
-                    <Download className="w-3.5 h-3.5" />
+                    <Download className="w-3.5 h-3.5 text-[#0076b6]" />
                     <span>Download Pre-Approval Audit Hash (.sig)</span>
                   </button>
                 </div>
@@ -790,12 +789,12 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                   <div className="flex items-center justify-between mb-1.5">
                     <label
                       htmlFor="audit-narrative-input"
-                      className="text-xs font-bold text-[#0d1c2f]"
+                      className="text-xs font-bold text-[#00263e]"
                     >
                       Mandatory Reviewer Audit Narrative / Condition Remarks{' '}
-                      <span className="text-[#ba1a1a]">*</span>
+                      <span className="text-[#C8102E]">*</span>
                     </label>
-                    <span className="font-mono text-[10.5px] text-[#64748b]">
+                    <span className="font-mono text-[10.5px] text-[#5c6f7e]">
                       {currentRemarks.length} / 500 characters
                     </span>
                   </div>
@@ -806,7 +805,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                     value={currentRemarks}
                     onChange={(e) => handleRemarksChange(e.target.value)}
                     placeholder="Enter statutory verification notes, external circular reference, or rejection reason..."
-                    className="w-full bg-[#eff4ff]/60 border border-[#d5e3fd] focus:border-[#01284b] rounded p-3 text-xs text-[#0d1c2f] focus:outline-none"
+                    className="w-full bg-[#f2f8fc] border border-[#cbd9e3] focus:border-[#00AEEF] rounded-xs p-3 text-xs text-[#00263e] focus:outline-none"
                   />
 
                   {/* Action Buttons */}
@@ -821,7 +820,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                             currentRemarks
                           )
                         }
-                        className="bg-[#e6eeff] hover:bg-[#d5e3fd] text-[#0d1c2f] text-xs font-bold px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                        className="bg-[#e5f4fb] hover:bg-[#cbe9f7] border border-[#b8e1f5] text-[#00395d] text-xs font-bold px-4 py-2 rounded-xs flex items-center gap-2 transition-colors"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
                         <span>Request Maker Revision</span>
@@ -836,7 +835,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                             currentRemarks
                           )
                         }
-                        className="bg-[#ba1a1a] hover:bg-[#93000a] text-white text-xs font-bold px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                        className="bg-[#C8102E] hover:bg-[#9e0b22] text-white text-xs font-bold px-4 py-2 rounded-xs flex items-center gap-2 transition-colors"
                       >
                         <Gavel className="w-3.5 h-3.5" />
                         <span>Reject Change Request</span>
@@ -846,7 +845,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                     <button
                       type="button"
                       onClick={handleApproveClick}
-                      className="bg-[#00462f] hover:bg-[#002e1d] text-white text-xs font-bold px-6 py-3 rounded flex items-center justify-center gap-2.5 transition-colors shadow-xs"
+                      className="bg-[#006837] hover:bg-[#004d29] border-b-2 border-b-[#00AEEF] text-white text-xs font-bold px-6 py-3 rounded-xs flex items-center justify-center gap-2.5 transition-colors shadow-xs"
                     >
                       <ShieldCheck className="w-4 h-4 text-[#85f8c4]" />
                       <span className="text-left leading-tight">
@@ -860,18 +859,18 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
               </div>
 
               {/* Dual-Control Audit Trail Trailhead */}
-              <div className="bg-white border border-[#e2e8f0] rounded p-4">
+              <div className="bg-white border border-[#cbd9e3] rounded-xs p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-[#01284b]" />
-                    <h3 className="text-xs font-bold text-[#0d1c2f]">
+                    <FileText className="w-4 h-4 text-[#0076b6]" />
+                    <h3 className="text-xs font-bold text-[#00263e]">
                       Dual-Control Audit Trail Trailhead
                     </h3>
                   </div>
                   <button
                     type="button"
                     onClick={onOpenAuditExplorer}
-                    className="text-[11px] font-bold text-[#01284b] hover:underline"
+                    className="text-[11px] font-bold text-[#0076b6] hover:text-[#00AEEF] hover:underline"
                   >
                     Open Statutory Log Explorer →
                   </button>
@@ -879,61 +878,61 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   {/* Step 1 */}
-                  <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
-                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                  <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
+                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                       MAKER STAGING EVENT
                     </div>
-                    <div className="font-mono text-[11px] font-bold text-[#0d1c2f] mt-1">
+                    <div className="font-mono text-[11px] font-bold text-[#00263e] mt-1">
                       {selectedCr.stagingEventId}
                     </div>
-                    <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                    <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                       {selectedCr.stagingEventShortDate} by{' '}
                       {selectedCr.makerName}
                     </div>
                   </div>
 
                   {/* Step 2 */}
-                  <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
-                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                  <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
+                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                       AUTOMATED RULE ENGINE
                     </div>
-                    <div className="font-mono text-[11px] font-bold text-[#005137] mt-1">
+                    <div className="font-mono text-[11px] font-bold text-[#006837] mt-1">
                       PASS: 0 Violations ({selectedCr.rulesEvaluated} rules)
                     </div>
-                    <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
-                      Executed via Axiom Engine v4.18
+                    <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
+                      Executed via Barclays BARX Engine v4.18
                     </div>
                   </div>
 
                   {/* Step 3 */}
-                  <div className="bg-[#eff4ff]/70 border border-[#d5e3fd] rounded p-3">
-                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#64748b]">
+                  <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3">
+                    <div className="text-[9.5px] font-bold uppercase tracking-wider text-[#5c6f7e]">
                       CHECKER DUAL GATE
                     </div>
                     {selectedCr.status === 'approved' ? (
                       <>
-                        <div className="font-mono text-[11px] font-bold text-[#005137] mt-1">
+                        <div className="font-mono text-[11px] font-bold text-[#006837] mt-1">
                           ATTESTED: ECDSA-256 SIGNED
                         </div>
-                        <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                        <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                           Committed by Checker M. Keller
                         </div>
                       </>
                     ) : selectedCr.status === 'rejected' ? (
                       <>
-                        <div className="font-mono text-[11px] font-bold text-[#ba1a1a] mt-1">
+                        <div className="font-mono text-[11px] font-bold text-[#C8102E] mt-1">
                           REJECTED BY CHECKER
                         </div>
-                        <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                        <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                           Returned to Maker Queue
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="font-mono text-[11px] font-bold text-[#ba1a1a] mt-1">
+                        <div className="font-mono text-[11px] font-bold text-[#C8102E] mt-1">
                           AWAITING SECOND SIGNATURE
                         </div>
-                        <div className="font-mono text-[10px] text-[#64748b] mt-0.5">
+                        <div className="font-mono text-[10px] text-[#5c6f7e] mt-0.5">
                           Requires Checker Authorization
                         </div>
                       </>
@@ -948,29 +947,29 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
 
       {/* Segregation of Duties (SoD) Enforcement & Quick Role Hand-off Modal */}
       {sodGateModalOpen && selectedCr && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-lg w-full overflow-hidden">
-            <div className="bg-[#07192f] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-lg w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#68dba9]" />
+                <Shield className="w-4 h-4 text-[#00AEEF]" />
                 <span className="text-xs font-bold">
-                  Segregation of Duties (SoD) — Tier-2 Dual-Control Gate
+                  Barclays Segregation of Duties (SoD) — Tier-2 Dual-Control Gate
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setSodGateModalOpen(false)}
-                className="text-[#8ba9d3] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
             <div className="p-4 space-y-3 text-xs">
-              <div className="bg-[#fff5f5] border border-[#ffdad6] rounded p-3 text-[#93000a]">
+              <div className="bg-[#fde8eb] border border-[#f8b4be] rounded-xs p-3 text-[#9e0b22]">
                 <div className="font-bold">
                   Self-Approval Blocked by Statutory Policy (ISO-20022 / SOC-1)
                 </div>
-                <p className="mt-1 text-[#0d1c2f]">
+                <p className="mt-1 text-[#00263e]">
                   Change Request <span className="font-mono font-bold">{selectedCr.id}</span>{' '}
                   was authored by your current active principal{' '}
                   <span className="font-mono font-bold">
@@ -979,7 +978,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                   .
                 </p>
               </div>
-              <p className="text-[#43474e]">
+              <p className="text-[#33414c]">
                 To complete cryptographic sign-off and publish this batch to{' '}
                 <span className="font-mono font-bold">{selectedCr.targetCode}</span>,
                 switch your active session scope to a designated Checker principal.
@@ -988,14 +987,14 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setSodGateModalOpen(false)}
-                  className="px-3 py-1.5 rounded border border-[#cbd5e1] font-semibold text-[#43474e]"
+                  className="px-3 py-1.5 rounded-xs border border-[#cbd9e3] font-semibold text-[#33414c]"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleSwitchToCheckerAndApprove}
-                  className="px-4 py-1.5 rounded bg-[#00462f] hover:bg-[#002e1d] text-white font-bold flex items-center gap-1.5"
+                  className="px-4 py-1.5 rounded-xs bg-[#006837] hover:bg-[#004d29] text-white font-bold flex items-center gap-1.5"
                 >
                   <ShieldCheck className="w-3.5 h-3.5 text-[#85f8c4]" />
                   <span>Switch to Checker (M. Keller) &amp; Approve</span>
@@ -1008,11 +1007,11 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
 
       {/* Hardware Token Re-Auth Modal */}
       {reAuthModalOpen && (
-        <div className="fixed inset-0 bg-[#0b192c]/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-white border border-[#94a3b8] rounded-md shadow-xl max-w-md w-full overflow-hidden">
-            <div className="bg-[#01284b] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed inset-0 bg-[#001b2e]/65 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-[#cbd9e3] border-t-2 border-t-[#00AEEF] rounded-xs shadow-xl max-w-md w-full overflow-hidden">
+            <div className="bg-[#00263e] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <KeyRound className="w-4 h-4 text-[#68dba9]" />
+                <KeyRound className="w-4 h-4 text-[#00AEEF]" />
                 <span className="text-xs font-bold">
                   HSM-FIPS-140-L3 Hardware Signer Re-Authentication
                 </span>
@@ -1020,33 +1019,33 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
               <button
                 type="button"
                 onClick={() => setReAuthModalOpen(false)}
-                className="text-[#aac9f4] hover:text-white"
+                className="text-[#8ab8d6] hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
             <div className="p-4 space-y-3 text-xs">
-              <div className="bg-[#eff4ff] border border-[#d5e3fd] rounded p-3 font-mono text-[11px] space-y-1">
-                <div>DEVICE: YubiHSM-2 FIPS (Serial #8841-US-EAST)</div>
+              <div className="bg-[#f2f8fc] border border-[#cbd9e3] rounded-xs p-3 font-mono text-[11px] space-y-1">
+                <div>DEVICE: Barclays-HSM-2 FIPS (Serial #8841-US-EAST)</div>
                 <div>KEY_SLOT: 0x04 (ECDSA-P256-SHA256)</div>
                 <div>SESSION_TTL: {tokenSessionTime}</div>
               </div>
               <div>
-                <label className="block font-bold text-[#0d1c2f] mb-1">
+                <label className="block font-bold text-[#00263e] mb-1">
                   Hardware Token Challenge OTP
                 </label>
                 <input
                   type="text"
                   value={tokenPin}
                   onChange={(e) => setTokenPin(e.target.value)}
-                  className="w-full border border-[#cbd5e1] rounded px-3 py-1.5 font-mono text-xs"
+                  className="w-full border border-[#cbd9e3] rounded-xs px-3 py-1.5 font-mono text-xs"
                 />
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setReAuthModalOpen(false)}
-                  className="px-3 py-1.5 rounded border border-[#cbd5e1] font-semibold text-[#43474e]"
+                  className="px-3 py-1.5 rounded-xs border border-[#cbd9e3] font-semibold text-[#33414c]"
                 >
                   Cancel
                 </button>
@@ -1060,7 +1059,7 @@ export const MakerCheckerQueueView: React.FC<MakerCheckerQueueViewProps> = ({
                       'success'
                     );
                   }}
-                  className="px-4 py-1.5 rounded bg-[#01284b] text-white font-semibold"
+                  className="px-4 py-1.5 rounded-xs bg-[#00395d] text-white font-semibold"
                 >
                   Verify &amp; Renew Session
                 </button>

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
@@ -10,8 +10,8 @@
   body {
     font-family: var(--font-sans);
     font-variant-numeric: tabular-nums;
-    background-color: #f8f9ff;
-    color: #0d1c2f;
+    background-color: #f4f7f9;
+    color: #00263e;
   }
 
   code, pre, .font-mono {
@@ -19,4 +19,3 @@
     font-variant-numeric: tabular-nums;
   }
 }
-
